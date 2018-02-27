@@ -4,6 +4,8 @@ import com.bingo.domain.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserRepository {
     int deleteByPrimaryKey(Integer id);
@@ -33,4 +35,6 @@ public interface UserRepository {
     int checkPassword(@Param("password")String password, @Param("userId")Integer userId);
 
     int checkEmailByUserId(@Param(value="email")String email, @Param("userId")Integer userId);
+
+    List<User> selectList();
 }

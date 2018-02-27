@@ -205,4 +205,11 @@
         and id != #{userId}
     </select>
 
+    <select id="selectList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from user
+        ORDER BY id asc
+    </select>
+
 </mapper>

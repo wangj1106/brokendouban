@@ -7,9 +7,12 @@ import com.bingo.domain.User;
 import com.bingo.repository.UserRepository;
 import com.bingo.service.IUserService;
 import com.bingo.util.MD5Util;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -164,4 +167,22 @@ public class UserServiceImpl implements IUserService{
         user.setPassword(org.apache.commons.lang3.StringUtils.EMPTY);
         return ServerResponse.createBySuccess(user);
     }
+
+    @Override
+    public ServerResponse checkAdminRole(User user){
+        if(user != null && user.getRole().intValue() == Const.Role.ROLE_ADMIN){
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByError();
+    }
+
+    @Override
+    public ServerResponse<PageInfo> getUserList(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<User> userList = userRepository.selectList();
+        PageInfo pageResult = new PageInfo(userList);
+        pageResult.setList(userList);
+        return ServerResponse.createBySuccess(pageResult);
+    }
+
 }
