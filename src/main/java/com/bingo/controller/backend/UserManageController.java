@@ -25,22 +25,19 @@ public class UserManageController {
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session){
         ServerResponse<User> response = iUserService.login(username,password);
-        if(response.isSuccess()){
-            User user = response.getData();
-            if(user.getRole() == Const.Role.ROLE_ADMIN){
-                //说明登录的是管理员
-                session.setAttribute(Const.CURRENT_USER,user);
-                return response;
-            }else{
+        if(iUserService.checkAdminRole(response.getData()).isSuccess()){
+            session.setAttribute(Const.CURRENT_USER, response.getData());
+            return response;
+            }
+            else{
                 return ServerResponse.createByErrorMessage("不是管理员,无法登录");
             }
-        }
-        return response;
     }
 
     @RequestMapping(value="list.do",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse getList(HttpSession session, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10")int pageSize) {
+    public ServerResponse getList(HttpSession session, @RequestParam(value = "pageNum",defaultValue
+            = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10")int pageSize) {
         User user = (User)session.getAttribute(Const.CURRENT_USER);
         if(user == null){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录管理员");
