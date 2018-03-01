@@ -1,0 +1,13 @@
+D:\大数据推荐系统\demo\src\main\java\com\bingo\service\impl\UserServiceImpl.java
+D:\大数据推荐系统\demo\src\main\java\com\bingo\repository\UserRepository.java
+D:\大数据推荐系统\demo\src\main\java\com\bingo\controller\backend\UserManageController.java
+D:\大数据推荐系统\demo\src\main\java\com\bingo\controller\portal\UserController.java
+D:\大数据推荐系统\demo\src\main\java\com\bingo\BrokendoubanApplication.java
+D:\大数据推荐系统\demo\src\main\java\com\bingo\config\MybatisConf.java
+D:\大数据推荐系统\demo\src\main\java\com\bingo\common\TokenCache.java
+D:\大数据推荐系统\demo\src\main\java\com\bingo\common\Const.java
+D:\大数据推荐系统\demo\src\main\java\com\bingo\common\ServerResponse.java
+D:\大数据推荐系统\demo\src\main\java\com\bingo\domain\User.java
+D:\大数据推荐系统\demo\src\main\java\com\bingo\service\IUserService.java
+D:\大数据推荐系统\demo\src\main\java\com\bingo\util\MD5Util.java
+D:\大数据推荐系统\demo\src\main\java\com\bingo\common\ResponseCode.java
