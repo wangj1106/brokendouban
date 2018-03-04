@@ -3,15 +3,18 @@ package com.bingo.service.impl;
 import com.bingo.common.Const;
 import com.bingo.common.ServerResponse;
 import com.bingo.common.TokenCache;
+import com.bingo.domain.Movie;
 import com.bingo.domain.User;
 import com.bingo.repository.UserRepository;
 import com.bingo.service.IUserService;
 import com.bingo.util.MD5Util;
+import com.bingo.vo.MovieVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -183,6 +186,20 @@ public class UserServiceImpl implements IUserService{
         PageInfo pageResult = new PageInfo(userList);
         pageResult.setList(userList);
         return ServerResponse.createBySuccess(pageResult);
+    }
+    @Override
+    public ServerResponse<List> getRecommend(Integer userId) {
+        List<Movie> recommendList = new ArrayList<>();
+        recommendList=userRepository.selectRecommend(userId);
+        if(recommendList == null){
+            return ServerResponse.createByErrorMessage("找不到当前用户的推荐信息");
+        }
+        List<MovieVo> recommendMovieVoList = new ArrayList<>();
+        for(Movie movie : recommendList) {
+            MovieVo movieVo=new MovieVo(movie);
+            recommendMovieVoList.add(movieVo);
+        }
+        return ServerResponse.createBySuccess(recommendMovieVoList);
     }
 
 }

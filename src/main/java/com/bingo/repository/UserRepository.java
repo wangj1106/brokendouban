@@ -1,5 +1,6 @@
 package com.bingo.repository;
 
+import com.bingo.domain.Movie;
 import com.bingo.domain.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -37,4 +38,6 @@ public interface UserRepository {
     int checkEmailByUserId(@Param(value="email")String email, @Param("userId")Integer userId);
 
     List<User> selectList();
+
+    List<Movie> selectRecommend(Integer id);
 }

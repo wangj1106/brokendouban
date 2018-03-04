@@ -4,6 +4,8 @@ import com.bingo.common.ServerResponse;
 import com.bingo.domain.User;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 public interface IUserService {
 
     ServerResponse<User> login(String username, String password);
@@ -17,5 +19,5 @@ public interface IUserService {
     ServerResponse<User> getInformation(Integer userId);
     ServerResponse checkAdminRole(User user);
     ServerResponse<PageInfo> getUserList(int pageNum, int pageSize);
-
+    ServerResponse<List> getRecommend(Integer userId);
 }
