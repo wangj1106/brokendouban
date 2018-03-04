@@ -13,12 +13,12 @@
             <arg column="role" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
             <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-            <arg column="age" jdbcType="INTEGER" javaType="java.lang.Integer" />
-            <arg column="sex" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="age" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="gender" jdbcType="INTEGER" javaType="java.lang.Integer" />
         </constructor>
     </resultMap>
     <sql id="Base_Column_List" >
-        id, username, password, email, phone, question, answer, role, create_time, update_time, age, sex
+        id, username, password, email, phone, question, answer, role, create_time, update_time, age, gender
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
@@ -34,11 +34,11 @@
         insert into user (id, username, password,
         email, phone, question,
         answer, role, create_time,
-        update_time, age, sex)
+        update_time, age, gender)
         values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
         #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR},
         #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
-        now(),#{age,jdbcType=INTEGER},#{sex,jdbcType=INTEGER})
+        now(),#{age,jdbcType=VARCHAR},#{gender,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="com.bingo.domain.User" >
         insert into user
@@ -76,8 +76,8 @@
             <if test="age != null" >
                 age,
             </if>
-            <if test="sex != null" >
-                sex,
+            <if test="gender != null" >
+                gender,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -114,8 +114,8 @@
             <if test="age != null" >
                 age,
             </if>
-            <if test="sex != null" >
-                sex,
+            <if test="gender != null" >
+                gender,
             </if>.
         </trim>
     </insert>
@@ -152,8 +152,8 @@
             <if test="age != null" >
                 age,
             </if>
-            <if test="sex != null" >
-                sex,
+            <if test="gender != null" >
+                gender,
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -169,8 +169,8 @@
         role = #{role,jdbcType=INTEGER},
         create_time = #{createTime,jdbcType=TIMESTAMP},
         update_time = now(),
-        age =#{age,jdbcType=INTEGER},
-        sex =#{sex,jdbcType=INTEGER}
+        age =#{age,jdbcType=VARCHAR},
+        gender =#{gender,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
 

@@ -1,8 +1,11 @@
+E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\vo\MovieVo.java
 E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\common\ResponseCode.java
 E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\service\IMovieService.java
 E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\util\MD5Util.java
 E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\config\MybatisConf.java
 E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\common\TokenCache.java
+E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\controller\backend\MovieManageController.java
+E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\controller\portal\MovieController.java
 E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\common\Const.java
 E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\service\impl\UserServiceImpl.java
 E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\service\IUserService.java
@@ -13,3 +16,5 @@ E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\domain\User.java
 E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\common\ServerResponse.java
 E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\repository\UserRepository.java
 E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\controller\portal\UserController.java
+E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\service\impl\MovieServiceImpl.java
+E:\ʵѵ\brokenDouban\brokendouban\src\main\java\com\bingo\repository\MovieRepository.java
