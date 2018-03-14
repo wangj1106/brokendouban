@@ -1,10 +1,15 @@
 package com.bingo.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-public class Movie {
+@Document(indexName="bingo",type="movie",indexStoreType="fs",shards=5,replicas=1,refreshInterval="-1")
+public class Movie implements Serializable {
+    @Id
     private Integer movie_id;
 
     private String movie_name;
@@ -23,13 +28,13 @@ public class Movie {
 
     private String movie_keyword;
 
-    private Integer pic_id;
+    private String pic_url;
 
     private String movie_imdbid;
 
     private Integer movie_time;
 
-    public Movie(Integer movie_id, String movie_name, String movie_director, String movie_actor, String movie_language, Integer type_id, String movie_district, Integer movie_date, String movie_keyword, Integer pic_id, String movie_imdbid, Integer movie_time) {
+    public Movie(Integer movie_id, String movie_name, String movie_director, String movie_actor, String movie_language, Integer type_id, String movie_district, Integer movie_date, String movie_keyword, String pic_url, String movie_imdbid, Integer movie_time) {
         this.movie_id = movie_id;
         this.movie_name = movie_name;
         this.movie_director = movie_director;
@@ -39,7 +44,7 @@ public class Movie {
         this.movie_district = movie_district;
         this.movie_date = movie_date;
         this.movie_keyword = movie_keyword;
-        this.pic_id = pic_id;
+        this.pic_url = pic_url;
         this.movie_imdbid = movie_imdbid;
         this.movie_time = movie_time;
     }
@@ -120,12 +125,12 @@ public class Movie {
         this.movie_keyword = movie_keyword;
     }
 
-    public Integer getPic_id() {
-        return pic_id;
+    public String getPic_url() {
+        return pic_url;
     }
 
-    public void setPic_id(Integer pic_id) {
-        this.pic_id = pic_id;
+    public void setPic_url(String pic_url) {
+        this.pic_url = pic_url;
     }
 
     public String getMovie_imdbid() {

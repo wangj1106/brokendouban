@@ -14,11 +14,11 @@
             <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
             <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
             <arg column="age" jdbcType="VARCHAR" javaType="java.lang.String" />
-            <arg column="gender" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="sex" jdbcType="INTEGER" javaType="java.lang.Integer" />
         </constructor>
     </resultMap>
     <sql id="Base_Column_List" >
-        id, username, password, email, phone, question, answer, role, create_time, update_time, age, gender
+        id, username, password, email, phone, question, answer, role, create_time, update_time, age, sex
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
@@ -34,11 +34,11 @@
         insert into user (id, username, password,
         email, phone, question,
         answer, role, create_time,
-        update_time, age, gender)
+        update_time, age, sex)
         values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
         #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR},
         #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
-        now(),#{age,jdbcType=VARCHAR},#{gender,jdbcType=INTEGER})
+        now(),#{age,jdbcType=VARCHAR},#{sex,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="com.bingo.domain.User" >
         insert into user
@@ -76,8 +76,8 @@
             <if test="age != null" >
                 age,
             </if>
-            <if test="gender != null" >
-                gender,
+            <if test="sex != null" >
+                sex,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -114,8 +114,8 @@
             <if test="age != null" >
                 age,
             </if>
-            <if test="gender != null" >
-                gender,
+            <if test="sex != null" >
+                sex,
             </if>.
         </trim>
     </insert>
@@ -152,8 +152,8 @@
             <if test="age != null" >
                 age,
             </if>
-            <if test="gender != null" >
-                gender,
+            <if test="sex != null" >
+                sex,
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -170,7 +170,7 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
         update_time = now(),
         age =#{age,jdbcType=VARCHAR},
-        gender =#{gender,jdbcType=INTEGER}
+        sex =#{sex,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -236,7 +236,7 @@
 
     <select id="selectRecommend" resultType="com.bingo.domain.Movie" parameterType="int">
 
-        select movie_id,movie_name,movie_director,movie_actor,movie_language,type_id,movie_district,movie_date,movie_keyword,pic_id,movie_imdbid,movie_time from
+        select movie_id,movie_name,movie_director,movie_actor,movie_language,type_id,movie_district,movie_date,movie_keyword,pic_url,movie_imdbid,movie_time from
             movie,recommend
         where
             movie.movie_id =recommend.mid and recommend.uid=#{id,jdbcType=INTEGER}

@@ -12,13 +12,13 @@
             <arg column="movie_district" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="movie_date" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="movie_keyword" jdbcType="VARCHAR" javaType="java.lang.String" />
-            <arg column="pic_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="pic_url" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="movie_imdbid" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="movie_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
         </constructor>
     </resultMap>
     <sql id="Base_Column_List" >
-        movie_id,movie_name,movie_director,movie_actor,movie_language,type_id,movie_district,movie_date,movie_keyword,pic_id,movie_imdbid,movie_time
+        movie_id,movie_name,movie_director,movie_actor,movie_language,type_id,movie_district,movie_date,movie_keyword,pic_url,movie_imdbid,movie_time
     </sql>
 
     <select id="selectByMovie_id" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -34,12 +34,12 @@
     </delete>
 
     <insert id="insert" parameterType="com.bingo.domain.Movie" >
-        insert into movie (movie_id,movie_name,movie_director,movie_actor,movie_language,type_id,movie_district,movie_date,movie_keyword,pic_id,movie_imdbid,movie_time)
+        insert into movie (movie_id,movie_name,movie_director,movie_actor,movie_language,type_id,movie_district,movie_date,movie_keyword,pic_url,movie_imdbid,movie_time)
         values (#{movie_id,jdbcType=INTEGER}, #{movie_name,jdbcType=VARCHAR}, #{movie_director,jdbcType=VARCHAR},
         #{movie_actor,jdbcType=VARCHAR},
         #{movie_language,jdbcType=VARCHAR}, #{type_id,jdbcType=INTEGER},
         #{movie_district,jdbcType=VARCHAR}, #{movie_date,jdbcType=INTEGER}, #{movie_keyword,jdbcType=VARCHAR},
-        #{pic_id,jdbcType=INTEGER},#{movie_imdbid,jdbcType=INTEGER},#{movie_time,jdbcType=INTEGER}
+        #{pic_url,jdbcType=VARCHAR},#{movie_imdbid,jdbcType=INTEGER},#{movie_time,jdbcType=INTEGER}
         )
 
     </insert>
@@ -71,8 +71,8 @@
             <if test="movie_keyword != null" >
         movie_keyword = #{movie_keyword,jdbcType=VARCHAR},
             </if>
-            <if test="pic_id != null" >
-        pic_id = #{pic_id,jdbcType=INTEGER}
+            <if test="pic_url != null" >
+        pic_url = #{pic_url,jdbcType=VARCHAR}
             </if>
             <if test="movie_imdbid != null" >
                 movie_imdbid = #{movie_imdbid,jdbcType=VARCHAR}
@@ -88,6 +88,14 @@
         SELECT
         <include refid="Base_Column_List"/>
         from movie
+        ORDER BY movie_id asc
+    </select>
+
+    <select id="selectListByCategory" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from movie
+        where movie_keyword LIKE "%"#{movie_keyword,jdbcType=VARCHAR}"%"
         ORDER BY movie_id asc
     </select>
 

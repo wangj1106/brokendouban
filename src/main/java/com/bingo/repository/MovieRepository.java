@@ -21,6 +21,6 @@ public interface MovieRepository {
 
     List<Movie> selectList();
 
-
+    List<Movie> selectListByCategory(String movie_keyword);
 
 }

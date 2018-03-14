@@ -26,7 +26,7 @@ public class MovieVo {
 
     private List<String> movie_keyword;
 
-    private Integer pic_id;
+    private String pic_url;
 
     private String movie_imdbid;
 
@@ -104,12 +104,12 @@ public class MovieVo {
         this.movie_keyword = movie_keyword;
     }
 
-    public Integer getPic_id() {
-        return pic_id;
+    public String getPic_url() {
+        return pic_url;
     }
 
-    public void setPic_id(Integer pic_id) {
-        this.pic_id = pic_id;
+    public void setPic_id(String  pic_id) {
+        this.pic_url = pic_url;
     }
 
     public String getMovie_imdbid() {
@@ -132,15 +132,20 @@ public class MovieVo {
         this.movie_id = movie.getMovie_id();
         this.movie_name = movie.getmovie_name();
         this.movie_director = movie.getMovie_director();
-        this.movie_actor = new ArrayList<>();
-        movie_actor=Arrays.asList(movie.getMovie_actor().split(","));
+        if(movie.getMovie_actor()!=null)
+        {this.movie_actor = new ArrayList<>();
+        movie_actor=Arrays.asList(movie.getMovie_actor().split(","));}
+        else {this.movie_actor=null;}
         this.movie_language = movie.getMovie_language();
         this.type_id = movie.getType_id();
         this.movie_district = movie.getMovie_district();
         this.movie_date = movie.getMovie_date();
+        if(movie.getMovie_actor()!=null)
+        {
         this.movie_keyword = new ArrayList<>();
-        movie_keyword=Arrays.asList(movie.getmovie_keyword().split(","));
-        this.pic_id = movie.getPic_id();
+        movie_keyword=Arrays.asList(movie.getmovie_keyword().split(","));}
+        else {this.movie_keyword=null;}
+        this.pic_url = movie.getPic_url();
         this.movie_imdbid = movie.getMovie_imdbid();
         this.movie_time = movie.getMovie_time();
     }

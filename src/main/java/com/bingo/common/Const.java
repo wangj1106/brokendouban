@@ -12,7 +12,7 @@ public class Const {
         int ROLE_ADMIN = 1;
     }
 
-    public interface Gender{
+    public interface Sex{
         int GENDER_MALE = 0;
         int GENDER_FEMALE = 1;
     }

@@ -1,13 +1,18 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://wangj1106.imwork.net:26943/brokendouban
-    username: root
-    password: root
+    url: jdbc:mysql://bingodatabase.mysqldb.chinacloudapi.cn:3306/test3
+    username: bingodatabase%bingo
+    password: Brokendouban123
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+  data:
+    elasticsearch: #ElasticsearchProperties
+     cluster-name: qunzhong #默认即为elasticsearch
+     cluster-nodes: 127.0.0.1:9300 #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
+
 
 server:
   port: 8088
