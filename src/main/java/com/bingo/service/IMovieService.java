@@ -13,5 +13,6 @@ public interface IMovieService {
     ServerResponse<String> updateMovie(Movie movie);
     ServerResponse<PageInfo> getMovieList(int pageNum, int pageSize);
     ServerResponse<PageInfo> getMovieListByCateforty(int pageNum, int pageSize,String movie_keyword);
+    ServerResponse<PageInfo> getMovieListByName(int pageNum, int pageSize,String movie_keyword);
     ServerResponse<String> checkMovieID(Integer movie_id);
 }

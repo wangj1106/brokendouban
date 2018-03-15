@@ -88,7 +88,7 @@
         SELECT
         <include refid="Base_Column_List"/>
         from movie
-        ORDER BY movie_id asc
+        ORDER BY movie_id DESC
     </select>
 
     <select id="selectListByCategory" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -96,8 +96,18 @@
         <include refid="Base_Column_List"/>
         from movie
         where movie_keyword LIKE "%"#{movie_keyword,jdbcType=VARCHAR}"%"
-        ORDER BY movie_id asc
+        ORDER BY movie_id DESC
     </select>
+
+    <select id="selectListByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from movie
+    where movie_name LIKE "%"#{movie_name,jdbcType=VARCHAR}"%"
+    ORDER BY movie_id DESC
+    </select>
+
+
 
     <select id="checkMovieID" resultType="int" parameterType="java.lang.Integer">
         SELECT count(1) from movie

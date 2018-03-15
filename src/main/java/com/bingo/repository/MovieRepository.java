@@ -23,4 +23,6 @@ public interface MovieRepository {
 
     List<Movie> selectListByCategory(String movie_keyword);
 
+    List<Movie> selectListByName(String movie_name);
+
 }

@@ -8,11 +8,11 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-  data:
-    elasticsearch: #ElasticsearchProperties
-     cluster-name: qunzhong #默认即为elasticsearch
-     cluster-nodes: 127.0.0.1:9200 #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
-
+#  data:
+#    elasticsearch: #ElasticsearchProperties
+#     cluster-name: qunzhong #默认即为elasticsearch
+#     cluster-nodes: 127.0.0.1:9200 #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode
+#
 
 server:
   port: 8088

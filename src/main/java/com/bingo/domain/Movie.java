@@ -1,19 +1,20 @@
 package com.bingo.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
+//import org.springframework.data.annotation.Id;
+//import org.springframework.data.elasticsearch.annotations.Document;
+//import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-@Document(indexName="bingo",type="movie",indexStoreType="fs",shards=5,replicas=1,refreshInterval="-1")
+//@Document(indexName="bingo",type="movie",indexStoreType="fs",shards=5,replicas=1,refreshInterval="-1")
 public class Movie implements Serializable {
-    @Id
+//    @Id
     private Integer movie_id;
-
+//    @Field
     private String movie_name;
-
+//    @Field
     private String movie_director;
 
     private String movie_actor;

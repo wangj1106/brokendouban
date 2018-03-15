@@ -32,6 +32,14 @@ public class MovieController {
         return response;
     }
 
+    @RequestMapping(value="showlistByName.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse show2(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10")int pageSize,String movie_name)
+    {
+        ServerResponse<PageInfo> response = iMovieService.getMovieListByName(pageNum, pageSize,movie_name);
+        return response;
+    }
+
     @RequestMapping(value="show.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<MovieVo> getMovieInformation(Integer movie_id){

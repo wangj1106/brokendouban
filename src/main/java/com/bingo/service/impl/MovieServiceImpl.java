@@ -117,6 +117,21 @@ public class MovieServiceImpl implements IMovieService{
     }
 
     @Override
+    public ServerResponse<PageInfo> getMovieListByName(int pageNum, int pageSize,String movie_name) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Movie> movieList = MovieRepository.selectListByName(movie_name);
+        List<MovieVo> movieVoList = new ArrayList<>();
+        for(Movie movie : movieList) {
+            MovieVo movieVo=new MovieVo(movie);
+            movieVoList.add(movieVo);
+        }
+
+        PageInfo pageResult = new PageInfo(movieVoList);
+        pageResult.setList(movieVoList);
+        return ServerResponse.createBySuccess(pageResult);
+    }
+
+    @Override
     public ServerResponse<String> checkMovieID(Integer movie_id) {
         int checkResultCount = MovieRepository.checkMovieID(movie_id);
         if(checkResultCount == 0){

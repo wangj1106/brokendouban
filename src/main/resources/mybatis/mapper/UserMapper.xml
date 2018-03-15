@@ -231,7 +231,7 @@
         SELECT
         <include refid="Base_Column_List"/>
         from user
-        ORDER BY id asc
+        ORDER BY id DESC
     </select>
 
     <select id="selectRecommend" resultType="com.bingo.domain.Movie" parameterType="int">
