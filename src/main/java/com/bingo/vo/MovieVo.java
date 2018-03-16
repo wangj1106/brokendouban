@@ -32,6 +32,12 @@ public class MovieVo {
 
     private Integer movie_time;
 
+    private Integer movie_numVotes;
+
+    private Double movie_rating;
+
+    private Double movie_star;
+
     public Integer getMovie_id() {
         return movie_id;
     }
@@ -108,10 +114,6 @@ public class MovieVo {
         return pic_url;
     }
 
-    public void setPic_id(String  pic_id) {
-        this.pic_url = pic_url;
-    }
-
     public String getMovie_imdbid() {
         return movie_imdbid;
     }
@@ -126,6 +128,34 @@ public class MovieVo {
 
     public void setMovie_time(Integer movie_time) {
         this.movie_time = movie_time;
+    }
+
+    public void setPic_url(String pic_url) {
+        this.pic_url = pic_url;
+    }
+
+    public Integer getMovie_numVotes() {
+        return movie_numVotes;
+    }
+
+    public void setMovie_numVotes(Integer movie_numVotes) {
+        this.movie_numVotes = movie_numVotes;
+    }
+
+    public Double getMovie_rating() {
+        return movie_rating;
+    }
+
+    public void setMovie_rating(Double movie_rating) {
+        this.movie_rating = movie_rating;
+    }
+
+    public Double getMovie_star() {
+        return movie_star;
+    }
+
+    public void setMovie_star(Double movie_star) {
+        this.movie_star = movie_star;
     }
 
     public MovieVo(Movie movie) {
@@ -148,6 +178,10 @@ public class MovieVo {
         this.pic_url = movie.getPic_url();
         this.movie_imdbid = movie.getMovie_imdbid();
         this.movie_time = movie.getMovie_time();
+        this.movie_rating=movie.getMovie_rating()/2;
+        this.movie_numVotes=movie.getMovie_numVotes();
+        this.movie_star=(Math.rint(movie.getMovie_rating()))/2;
+
     }
 
     public MovieVo() {

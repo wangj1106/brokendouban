@@ -35,7 +35,11 @@ public class Movie implements Serializable {
 
     private Integer movie_time;
 
-    public Movie(Integer movie_id, String movie_name, String movie_director, String movie_actor, String movie_language, Integer type_id, String movie_district, Integer movie_date, String movie_keyword, String pic_url, String movie_imdbid, Integer movie_time) {
+    private Integer movie_numVotes;
+
+    private Double movie_rating;
+
+    public Movie(Integer movie_id, String movie_name, String movie_director, String movie_actor, String movie_language, Integer type_id, String movie_district, Integer movie_date, String movie_keyword, String pic_url, String movie_imdbid, Integer movie_time, Integer movie_numVotes, Double movie_rating) {
         this.movie_id = movie_id;
         this.movie_name = movie_name;
         this.movie_director = movie_director;
@@ -48,6 +52,8 @@ public class Movie implements Serializable {
         this.pic_url = pic_url;
         this.movie_imdbid = movie_imdbid;
         this.movie_time = movie_time;
+        this.movie_numVotes = movie_numVotes;
+        this.movie_rating = movie_rating;
     }
 
     public Movie() {
@@ -148,5 +154,37 @@ public class Movie implements Serializable {
 
     public void setMovie_time(Integer movie_time) {
         this.movie_time = movie_time;
+    }
+
+    public String getMovie_name() {
+        return movie_name;
+    }
+
+    public void setMovie_name(String movie_name) {
+        this.movie_name = movie_name;
+    }
+
+    public String getMovie_keyword() {
+        return movie_keyword;
+    }
+
+    public void setMovie_keyword(String movie_keyword) {
+        this.movie_keyword = movie_keyword;
+    }
+
+    public Integer getMovie_numVotes() {
+        return movie_numVotes;
+    }
+
+    public void setMovie_numVotes(Integer movie_numVotes) {
+        this.movie_numVotes = movie_numVotes;
+    }
+
+    public Double getMovie_rating() {
+        return movie_rating;
+    }
+
+    public void setMovie_rating(Double movie_rating) {
+        this.movie_rating = movie_rating;
     }
 }
