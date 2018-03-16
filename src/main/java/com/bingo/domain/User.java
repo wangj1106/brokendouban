@@ -135,11 +135,11 @@ public class User {
         this.age = age;
     }
 
-    public Integer getGender() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setGender(Integer sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 }

@@ -13,7 +13,7 @@ public class Const {
     }
 
     public interface Sex{
-        int GENDER_MALE = 0;
-        int GENDER_FEMALE = 1;
+        int SEX_MALE = 0;
+        int SEX_FEMALE = 1;
     }
 }
