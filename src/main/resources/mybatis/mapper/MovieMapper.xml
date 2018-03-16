@@ -15,8 +15,8 @@
             <arg column="pic_url" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="movie_imdbid" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="movie_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
-            <arg column="movie_rating" jdbcType="DOUBLE" javaType="java.lang.Double" />
             <arg column="movie_numVotes" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="movie_rating" jdbcType="DOUBLE" javaType="java.lang.Double" />
         </constructor>
     </resultMap>
     <sql id="Base_Column_List" >
@@ -120,5 +120,14 @@
     <select id="checkMovieID" resultType="int" parameterType="java.lang.Integer">
         SELECT count(1) from movie
         where movie_id = #{movie_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectSimilarMovieInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM simmovies
+        LEFT JOIN movie
+        ON simmovies.simId=movie.movie_id
+        WHERE mid=#{mid,jdbcType=INTEGER};
     </select>
 </mapper>

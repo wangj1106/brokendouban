@@ -156,21 +156,21 @@ public class Movie implements Serializable {
         this.movie_time = movie_time;
     }
 
-    public String getMovie_name() {
-        return movie_name;
-    }
+//    public String getMovie_name() {
+//        return movie_name;
+//    }
+//
+//    public void setMovie_name(String movie_name) {
+//        this.movie_name = movie_name;
+//    }
 
-    public void setMovie_name(String movie_name) {
-        this.movie_name = movie_name;
-    }
-
-    public String getMovie_keyword() {
-        return movie_keyword;
-    }
-
-    public void setMovie_keyword(String movie_keyword) {
-        this.movie_keyword = movie_keyword;
-    }
+//    public String getMovie_keyword() {
+//        return movie_keyword;
+//    }
+//
+//    public void setMovie_keyword(String movie_keyword) {
+//        this.movie_keyword = movie_keyword;
+//    }
 
     public Integer getMovie_numVotes() {
         return movie_numVotes;

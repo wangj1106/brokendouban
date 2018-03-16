@@ -5,6 +5,8 @@ import com.bingo.domain.Movie;
 import com.bingo.vo.MovieVo;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 public interface IMovieService {
 
     ServerResponse<String> addMovie(Movie movie);
@@ -15,4 +17,5 @@ public interface IMovieService {
     ServerResponse<PageInfo> getMovieListByCateforty(int pageNum, int pageSize,String movie_keyword);
     ServerResponse<PageInfo> getMovieListByName(int pageNum, int pageSize,String movie_keyword);
     ServerResponse<String> checkMovieID(Integer movie_id);
+    ServerResponse<List<MovieVo>> getSimilarMovieInfo(Integer movie_id);
 }

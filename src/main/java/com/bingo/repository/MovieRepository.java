@@ -25,4 +25,6 @@ public interface MovieRepository {
 
     List<Movie> selectListByName(String movie_name);
 
+    List<Movie> selectSimilarMovieInfo(Integer movie_id);
+
 }

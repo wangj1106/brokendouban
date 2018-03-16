@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://bingodatabase.mysqldb.chinacloudapi.cn:3306/test3
+    url: jdbc:mysql://bingodatabase.mysqldb.chinacloudapi.cn:3306/test4
     username: bingodatabase%bingo
     password: Brokendouban123
   jpa:

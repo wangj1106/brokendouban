@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @Controller
 @RequestMapping("/movie/")
@@ -47,5 +49,14 @@ public class MovieController {
         ServerResponse<MovieVo> response = iMovieService.getMovieInformation(movie_id);
         return response;
     }
+
+    @RequestMapping(value = "showsimilarmovie.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<List<MovieVo>> getSimilarMovieInfo(@RequestParam(value = "id",defaultValue = "35423") int id)
+    {
+        ServerResponse<List<MovieVo>> response=iMovieService.getSimilarMovieInfo(id);
+        return response;
+    }
+
 
 }
