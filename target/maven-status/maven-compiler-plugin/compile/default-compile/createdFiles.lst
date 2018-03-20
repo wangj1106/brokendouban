@@ -2,7 +2,6 @@ com\bingo\common\ResponseCode.class
 com\bingo\BrokendoubanApplication.class
 com\bingo\common\TokenCache.class
 com\bingo\common\ServerResponse.class
-com\bingo\common\Const$Gender.class
 com\bingo\common\TokenCache$1.class
 com\bingo\repository\UserRepository.class
 com\bingo\controller\portal\UserController.class

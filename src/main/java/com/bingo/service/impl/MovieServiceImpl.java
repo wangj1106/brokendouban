@@ -49,14 +49,14 @@ public class MovieServiceImpl implements IMovieService {
     }
 
     @Override
-    public ServerResponse<MovieVo> getMovieInformation(Integer movie_id) {
+    public ServerResponse<Movie> getMovieInformation(Integer movie_id) {
         int checkResultCount = MovieRepository.checkMovieID(movie_id);
         if (checkResultCount == 0) {
             return ServerResponse.createByErrorMessage("该id电影不存在");
         }
         Movie movie = MovieRepository.selectByMovie_id(movie_id);
-        MovieVo movieVo = new MovieVo(movie);
-        return ServerResponse.createBySuccess(movieVo);
+        //MovieVo movieVo = new MovieVo(movie);
+        return ServerResponse.createBySuccess(movie);
     }
 
     @Override
@@ -89,14 +89,16 @@ public class MovieServiceImpl implements IMovieService {
     public ServerResponse<PageInfo> getMovieList(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Movie> movieList = MovieRepository.selectList();
-        List<MovieVo> movieVoList = new ArrayList<>();
-        for (Movie movie : movieList) {
-            MovieVo movieVo = new MovieVo(movie);
-            movieVoList.add(movieVo);
-        }
-
-        PageInfo pageResult = new PageInfo(movieVoList);
-        pageResult.setList(movieVoList);
+//        List<MovieVo> movieVoList = new ArrayList<>();
+//        for (Movie movie : movieList) {
+//            MovieVo movieVo = new MovieVo(movie);
+//            movieVoList.add(movieVo);
+//        }
+//
+//        PageInfo pageResult = new PageInfo(movieVoList);
+//        pageResult.setList(movieVoList);
+        PageInfo pageResult = new PageInfo(movieList);
+        pageResult.setList(movieList);
         return ServerResponse.createBySuccess(pageResult);
     }
 
@@ -104,14 +106,16 @@ public class MovieServiceImpl implements IMovieService {
     public ServerResponse<PageInfo> getMovieListByCateforty(int pageNum, int pageSize, String movie_keyword) {
         PageHelper.startPage(pageNum, pageSize);
         List<Movie> movieList = MovieRepository.selectListByCategory(movie_keyword);
-        List<MovieVo> movieVoList = new ArrayList<>();
-        for (Movie movie : movieList) {
-            MovieVo movieVo = new MovieVo(movie);
-            movieVoList.add(movieVo);
-        }
-
-        PageInfo pageResult = new PageInfo(movieVoList);
-        pageResult.setList(movieVoList);
+//        List<MovieVo> movieVoList = new ArrayList<>();
+//        for (Movie movie : movieList) {
+//            MovieVo movieVo = new MovieVo(movie);
+//            movieVoList.add(movieVo);
+//        }
+//
+//        PageInfo pageResult = new PageInfo(movieVoList);
+//        pageResult.setList(movieVoList);
+        PageInfo pageResult = new PageInfo(movieList);
+        pageResult.setList(movieList);
         return ServerResponse.createBySuccess(pageResult);
     }
 
@@ -119,14 +123,16 @@ public class MovieServiceImpl implements IMovieService {
     public ServerResponse<PageInfo> getMovieListByName(int pageNum, int pageSize, String movie_name) {
         PageHelper.startPage(pageNum, pageSize);
         List<Movie> movieList = MovieRepository.selectListByName(movie_name);
-        List<MovieVo> movieVoList = new ArrayList<>();
-        for (Movie movie : movieList) {
-            MovieVo movieVo = new MovieVo(movie);
-            movieVoList.add(movieVo);
-        }
-
-        PageInfo pageResult = new PageInfo(movieVoList);
-        pageResult.setList(movieVoList);
+//        List<MovieVo> movieVoList = new ArrayList<>();
+//        for (Movie movie : movieList) {
+//            MovieVo movieVo = new MovieVo(movie);
+//            movieVoList.add(movieVo);
+//        }
+//
+//        PageInfo pageResult = new PageInfo(movieVoList);
+//        pageResult.setList(movieVoList);
+        PageInfo pageResult = new PageInfo(movieList);
+        pageResult.setList(movieList);
         return ServerResponse.createBySuccess(pageResult);
     }
 
@@ -139,14 +145,15 @@ public class MovieServiceImpl implements IMovieService {
     }
 
     @Override
-    public ServerResponse<List<MovieVo>> getSimilarMovieInfo(Integer movie_id)  {
+    public ServerResponse<List<Movie>> getSimilarMovieInfo(Integer movie_id)  {
         List<Movie> movieList = MovieRepository.selectSimilarMovieInfo(movie_id);
         if (movieList != null && movieList.size() > 0) {
-            movieList = movieList.stream().filter(movie -> movie != null).collect(Collectors.toList());
-            if (movieList.size() > 0) {
-                List<MovieVo> movieVoList = movieList.stream().map(movie -> new MovieVo(movie)).collect(Collectors.toList());
-                return ServerResponse.createBySuccess(movieVoList);
-            }
+//            movieList = movieList.stream().filter(movie -> movie != null).collect(Collectors.toList());
+//            if (movieList.size() > 0) {
+//                List<MovieVo> movieVoList = movieList.stream().map(movie -> new MovieVo(movie)).collect(Collectors.toList());
+//                return ServerResponse.createBySuccess(movieVoList);
+//            }
+            return ServerResponse.createBySuccess(movieList);
         }
         return ServerResponse.createBySuccessMessage("没有相似的电影");
 

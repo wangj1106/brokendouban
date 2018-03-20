@@ -241,4 +241,5 @@
         where
             movie.movie_id =recommend.mid and recommend.uid=#{id,jdbcType=INTEGER}
     </select>
+
 </mapper>

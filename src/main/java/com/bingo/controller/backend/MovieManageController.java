@@ -59,7 +59,7 @@ public class MovieManageController {
 
     @RequestMapping(value="get_information.do",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<MovieVo> getMovieInformation(HttpSession session,Integer movie_id){
+    public ServerResponse<Movie> getMovieInformation(HttpSession session,Integer movie_id){
 //        int checkResult = checkUser(session);
 //        if (checkResult==ResponseCode.NEED_LOGIN.getCode())
 //        { return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录管理员");
@@ -68,7 +68,7 @@ public class MovieManageController {
 //        {
 //            return ServerResponse.createByErrorCodeMessage(ResponseCode.ERROR.getCode(), "权限不足");
 //        }
-        ServerResponse<MovieVo> response = iMovieService.getMovieInformation(movie_id);
+        ServerResponse<Movie> response = iMovieService.getMovieInformation(movie_id);
         return response;
     }
 

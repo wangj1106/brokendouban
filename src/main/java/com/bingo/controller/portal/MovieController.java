@@ -2,6 +2,7 @@ package com.bingo.controller.portal;
 
 import com.bingo.common.ResponseCode;
 import com.bingo.common.ServerResponse;
+import com.bingo.domain.Movie;
 import com.bingo.service.IMovieService;
 import com.bingo.vo.MovieVo;
 import com.github.pagehelper.PageInfo;
@@ -44,17 +45,17 @@ public class MovieController {
 
     @RequestMapping(value="show.do",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<MovieVo> getMovieInformation(Integer movie_id){
+    public ServerResponse<Movie> getMovieInformation(Integer movie_id){
 
-        ServerResponse<MovieVo> response = iMovieService.getMovieInformation(movie_id);
+        ServerResponse<Movie> response = iMovieService.getMovieInformation(movie_id);
         return response;
     }
 
     @RequestMapping(value = "showsimilarmovie.do",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<List<MovieVo>> getSimilarMovieInfo(@RequestParam(value = "movieId",defaultValue = "35423") int movieId)
+    public ServerResponse<List<Movie>> getSimilarMovieInfo(@RequestParam(value = "movieId",defaultValue = "35423") int movieId)
     {
-        ServerResponse<List<MovieVo>> response=iMovieService.getSimilarMovieInfo(movieId);
+        ServerResponse<List<Movie>> response=iMovieService.getSimilarMovieInfo(movieId);
         return response;
     }
 

@@ -11,11 +11,11 @@ public interface IMovieService {
 
     ServerResponse<String> addMovie(Movie movie);
     ServerResponse<String> deleteMovie(Integer movie_id);
-    ServerResponse<MovieVo> getMovieInformation(Integer movie_id);
+    ServerResponse<Movie> getMovieInformation(Integer movie_id);
     ServerResponse<String> updateMovie(Movie movie);
     ServerResponse<PageInfo> getMovieList(int pageNum, int pageSize);
     ServerResponse<PageInfo> getMovieListByCateforty(int pageNum, int pageSize,String movie_keyword);
     ServerResponse<PageInfo> getMovieListByName(int pageNum, int pageSize,String movie_keyword);
     ServerResponse<String> checkMovieID(Integer movie_id);
-    ServerResponse<List<MovieVo>> getSimilarMovieInfo(Integer movie_id);
+    ServerResponse<List<Movie>> getSimilarMovieInfo(Integer movie_id);
 }
