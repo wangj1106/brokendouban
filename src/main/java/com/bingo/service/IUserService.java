@@ -20,4 +20,6 @@ public interface IUserService {
     ServerResponse checkAdminRole(User user);
     ServerResponse<PageInfo> getUserList(int pageNum, int pageSize);
     ServerResponse<List> getRecommend(Integer userId);
+    ServerResponse<String> deleteUser(Integer userId);
+
 }

@@ -202,4 +202,22 @@ public class UserServiceImpl implements IUserService{
         return ServerResponse.createBySuccess(recommendMovieVoList);
     }
 
+
+
+    @Override
+    public ServerResponse<String> deleteUser(Integer userId) {
+        User user = userRepository.selectByPrimaryKey(userId);
+        if(user == null){
+            return ServerResponse.createByErrorMessage("找不到当前用户");
+        }
+        int resultCount = userRepository.deleteByPrimaryKey(userId);
+        if (resultCount == 0) {
+            return ServerResponse.createBySuccess("删除用户操作失败，请检查");
+        }
+        return ServerResponse.createByErrorMessage("删除用户操作成功");
+    }
+
+
+
+
 }

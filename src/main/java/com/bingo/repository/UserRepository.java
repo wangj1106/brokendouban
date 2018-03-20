@@ -31,11 +31,11 @@ public interface UserRepository {
 
     int checkAnswer(@Param("username") String username, @Param("question") String question, @Param("answer") String answer);
 
-    int updatePasswordByUsername(@Param("username")String username, @Param("passwordNew")String passwordNew);
+    int updatePasswordByUsername(@Param("username") String username, @Param("passwordNew") String passwordNew);
 
-    int checkPassword(@Param("password")String password, @Param("userId")Integer userId);
+    int checkPassword(@Param("password") String password, @Param("userId") Integer userId);
 
-    int checkEmailByUserId(@Param(value="email")String email, @Param("userId")Integer userId);
+    int checkEmailByUserId(@Param(value = "email") String email, @Param("userId") Integer userId);
 
     List<User> selectList();
 
