@@ -52,9 +52,9 @@ public class MovieController {
 
     @RequestMapping(value = "showsimilarmovie.do",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<List<MovieVo>> getSimilarMovieInfo(@RequestParam(value = "id",defaultValue = "35423") int id)
+    public ServerResponse<List<MovieVo>> getSimilarMovieInfo(@RequestParam(value = "movieId",defaultValue = "35423") int movieId)
     {
-        ServerResponse<List<MovieVo>> response=iMovieService.getSimilarMovieInfo(id);
+        ServerResponse<List<MovieVo>> response=iMovieService.getSimilarMovieInfo(movieId);
         return response;
     }
 
