@@ -154,6 +154,8 @@ public class UserServiceImpl implements IUserService{
         updateUser.setPhone(user.getPhone());
         updateUser.setQuestion(user.getQuestion());
         updateUser.setAnswer(user.getAnswer());
+        updateUser.setAge(user.getAge());
+        updateUser.setSex(user.getSex());
 
         int updateCount = userRepository.updateByPrimaryKeySelective(updateUser);
         if(updateCount > 0){

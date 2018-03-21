@@ -150,10 +150,10 @@
                 update_time = now(),
             </if>
             <if test="age != null" >
-                age,
+                age = #{age, jdbcType=VARCHAR},
             </if>
             <if test="sex != null" >
-                sex,
+                sex = #{sex, jdbcType=INTEGER},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}

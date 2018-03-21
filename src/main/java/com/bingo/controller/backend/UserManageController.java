@@ -89,4 +89,19 @@ public class UserManageController {
         return response;
     }
 
+    @RequestMapping(value = "update_information.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<User> update_information(HttpSession session, User user){
+        int checkResult = checkUser(session);
+        if (checkResult == ResponseCode.NEED_LOGIN.getCode()) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录管理员");
+        }
+        if (checkResult == ResponseCode.ERROR.getCode()) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.ERROR.getCode(), "权限不足");
+        }
+        ServerResponse<User> response = iUserService.updateInformation(user);
+
+        return response;
+    }
+
 }
