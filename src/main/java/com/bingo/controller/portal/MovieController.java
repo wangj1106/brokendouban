@@ -22,16 +22,16 @@ public class MovieController {
 
     @RequestMapping(value="showlist.do",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse showMovieList(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10")int pageSize)
+    public ServerResponse showMovieList(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10")int pageSize, @RequestParam(value = "orderBy",defaultValue = "null")String orderBy)
     {
-        ServerResponse<PageInfo> response = iMovieService.getMovieList(pageNum, pageSize);
+        ServerResponse<PageInfo> response = iMovieService.getMovieList(pageNum, pageSize, orderBy);
         return response;
     }
     @RequestMapping(value="showlistByCategory.do",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse show(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10")int pageSize,String movie_keyword)
+    public ServerResponse show(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10")int pageSize , @RequestParam(value = "orderBy",defaultValue = "null")String orderBy,String movie_keyword)
     {
-        ServerResponse<PageInfo> response = iMovieService.getMovieListByCateforty(pageNum, pageSize,movie_keyword);
+        ServerResponse<PageInfo> response = iMovieService.getMovieListByCateforty(pageNum, pageSize, orderBy, movie_keyword);
         return response;
     }
 

@@ -86,8 +86,8 @@ public class MovieServiceImpl implements IMovieService {
 
 
     @Override
-    public ServerResponse<PageInfo> getMovieList(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
+    public ServerResponse<PageInfo> getMovieList(int pageNum, int pageSize, String orderBy) {
+        PageHelper.startPage(pageNum, pageSize, orderBy);
         List<Movie> movieList = MovieRepository.selectList();
 //        List<MovieVo> movieVoList = new ArrayList<>();
 //        for (Movie movie : movieList) {
@@ -103,8 +103,8 @@ public class MovieServiceImpl implements IMovieService {
     }
 
     @Override
-    public ServerResponse<PageInfo> getMovieListByCateforty(int pageNum, int pageSize, String movie_keyword) {
-        PageHelper.startPage(pageNum, pageSize);
+    public ServerResponse<PageInfo> getMovieListByCateforty(int pageNum, int pageSize, String orderBy, String movie_keyword) {
+        PageHelper.startPage(pageNum, pageSize, orderBy);
         List<Movie> movieList = MovieRepository.selectListByCategory(movie_keyword);
 //        List<MovieVo> movieVoList = new ArrayList<>();
 //        for (Movie movie : movieList) {

@@ -89,7 +89,7 @@ public class MovieManageController {
 
     @RequestMapping(value="list.do",method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse getList(HttpSession session, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10")int pageSize)
+    public ServerResponse getList(HttpSession session, @RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10")int pageSize, @RequestParam(value = "orderBy",defaultValue = "null")String orderBy)
     {    int checkResult = checkUser(session);
         if (checkResult==ResponseCode.NEED_LOGIN.getCode())
         { return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录管理员");
@@ -98,7 +98,7 @@ public class MovieManageController {
         {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ERROR.getCode(), "权限不足");
         }
-        ServerResponse<PageInfo> response = iMovieService.getMovieList(pageNum, pageSize);
+        ServerResponse<PageInfo> response = iMovieService.getMovieList(pageNum, pageSize, orderBy);
         return response;
     }
 
