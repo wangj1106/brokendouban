@@ -216,10 +216,17 @@ public class UserServiceImpl implements IUserService{
         if (resultCount == 0) {
             return ServerResponse.createBySuccess("删除用户操作失败，请检查");
         }
-        return ServerResponse.createByErrorMessage("删除用户操作成功");
+        return ServerResponse.createBySuccessMessage("删除用户操作成功");
     }
 
+    @Override
+    public int checkUserRole(Integer userId) {
 
+        int role=userRepository.checkUserRole(userId);
+        if(role==0) return 0;
+        if(role==1) return 1;
+        else return -1;
+    }
 
 
 }

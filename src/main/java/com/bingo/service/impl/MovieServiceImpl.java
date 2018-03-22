@@ -155,7 +155,7 @@ public class MovieServiceImpl implements IMovieService {
 //            }
             return ServerResponse.createBySuccess(movieList);
         }
-        return ServerResponse.createBySuccessMessage("没有相似的电影");
+        return ServerResponse.createByErrorMessage("没有相似的电影");
 
     }
 }

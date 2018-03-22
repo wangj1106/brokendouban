@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+
 @CrossOrigin
 @Controller
 @RequestMapping("/manage/user")
@@ -48,7 +49,7 @@ public class UserManageController {
 
     @RequestMapping(value = "delete.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<String> deleteMovie(HttpSession session,Integer userId) {
+    public ServerResponse<String> deleteMovie(HttpSession session, Integer userId) {
         int checkResult = checkUser(session);
         if (checkResult == ResponseCode.NEED_LOGIN.getCode()) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录管理员");
@@ -56,8 +57,12 @@ public class UserManageController {
         if (checkResult == ResponseCode.ERROR.getCode()) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ERROR.getCode(), "权限不足");
         }
-        ServerResponse<String> response = iUserService.deleteUser(userId);
-        return response;
+        if (iUserService.checkUserRole(userId) == 1) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.ERROR.getCode(), "该用户是管理员");
+        } else {
+            ServerResponse<String> response = iUserService.deleteUser(userId);
+            return response;
+        }
     }
 
     public int checkUser(HttpSession session) {
@@ -69,14 +74,13 @@ public class UserManageController {
 
             return ResponseCode.SUCCESS.getCode();
 
-        }
-        else
+        } else
             return ResponseCode.ERROR.getCode();
     }
 
-    @RequestMapping(value="get_information.do",method = RequestMethod.POST)
+    @RequestMapping(value = "get_information.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<User> getUserInformation(HttpSession session,Integer userId){
+    public ServerResponse<User> getUserInformation(HttpSession session, Integer userId) {
         int checkResult = checkUser(session);
         if (checkResult == ResponseCode.NEED_LOGIN.getCode()) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录管理员");
@@ -91,7 +95,7 @@ public class UserManageController {
 
     @RequestMapping(value = "update_information.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<User> update_information(HttpSession session, User user){
+    public ServerResponse<User> update_information(HttpSession session, User user) {
         int checkResult = checkUser(session);
         if (checkResult == ResponseCode.NEED_LOGIN.getCode()) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录管理员");
