@@ -96,7 +96,7 @@
         SELECT
         <include refid="Base_Column_List"/>
         from movie
-        ORDER BY movie_id DESC
+        <!--ORDER BY movie_id DESC-->
     </select>
 
     <select id="selectListByCategory" resultMap="BaseResultMap" parameterType="java.lang.String">
@@ -104,7 +104,7 @@
         <include refid="Base_Column_List"/>
         from movie
         where movie_keyword LIKE "%"#{movie_keyword,jdbcType=VARCHAR}"%"
-        ORDER BY movie_id DESC
+        <!--ORDER BY movie_id DESC-->
     </select>
 
     <select id="selectListByName" resultMap="BaseResultMap" parameterType="java.lang.String">
