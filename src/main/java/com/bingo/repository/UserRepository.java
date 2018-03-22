@@ -41,5 +41,4 @@ public interface UserRepository {
 
     List<Movie> selectRecommend(Integer id);
 
-    int checkUserRole(Integer id);
 }

@@ -21,6 +21,6 @@ public interface IUserService {
     ServerResponse<PageInfo> getUserList(int pageNum, int pageSize);
     ServerResponse<List> getRecommend(Integer userId);
     ServerResponse<String> deleteUser(Integer userId);
-    int checkUserRole(Integer userId);
+
 
 }

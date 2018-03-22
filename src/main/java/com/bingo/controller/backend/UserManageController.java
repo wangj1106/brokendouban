@@ -49,7 +49,7 @@ public class UserManageController {
 
     @RequestMapping(value = "delete.do", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<String> deleteMovie(HttpSession session, Integer userId) {
+    public ServerResponse<String> deleteUser(HttpSession session, Integer userId) {
         int checkResult = checkUser(session);
         if (checkResult == ResponseCode.NEED_LOGIN.getCode()) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录，请登录管理员");
@@ -57,12 +57,8 @@ public class UserManageController {
         if (checkResult == ResponseCode.ERROR.getCode()) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ERROR.getCode(), "权限不足");
         }
-        if (iUserService.checkUserRole(userId) == 1) {
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.ERROR.getCode(), "该用户是管理员");
-        } else {
             ServerResponse<String> response = iUserService.deleteUser(userId);
             return response;
-        }
     }
 
     public int checkUser(HttpSession session) {

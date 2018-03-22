@@ -21,12 +21,7 @@ public class MovieServiceImpl implements IMovieService {
 
     @Override
     public ServerResponse<String> addMovie(Movie movie) {
-
-
-        int checkResultCount = MovieRepository.checkMovieID(movie.getMovie_id());
-        if (checkResultCount == 1) {
-            return ServerResponse.createByErrorMessage("该电影id已存在");
-        }
+        movie.setMovie_id(null);
         int resultCount = MovieRepository.insert(movie);
         if (resultCount == 0) {
             return ServerResponse.createByErrorMessage("添加电影操作失败，请检查");
@@ -145,7 +140,7 @@ public class MovieServiceImpl implements IMovieService {
     }
 
     @Override
-    public ServerResponse<List<Movie>> getSimilarMovieInfo(Integer movie_id)  {
+    public ServerResponse<List<Movie>> getSimilarMovieInfo(Integer movie_id) {
         List<Movie> movieList = MovieRepository.selectSimilarMovieInfo(movie_id);
         if (movieList != null && movieList.size() > 0) {
 //            movieList = movieList.stream().filter(movie -> movie != null).collect(Collectors.toList());
