@@ -2,9 +2,11 @@ package com.bingo.service.impl;
 
 import com.bingo.common.ServerResponse;
 import com.bingo.domain.Movie;
+import com.bingo.domain.Rating;
 import com.bingo.repository.MovieRepository;
 import com.bingo.service.IMovieService;
 import com.bingo.vo.MovieVo;
+import com.bingo.vo.RatingVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 public class MovieServiceImpl implements IMovieService {
     @Autowired
     private MovieRepository MovieRepository;
+
 
     @Override
     public ServerResponse<String> addMovie(Movie movie) {
@@ -149,8 +152,23 @@ public class MovieServiceImpl implements IMovieService {
 //                return ServerResponse.createBySuccess(movieVoList);
 //            }
             return ServerResponse.createBySuccess(movieList);
-        }
-        return ServerResponse.createByErrorMessage("没有相似的电影");
+        } else return ServerResponse.createByErrorMessage("没有相似的电影");
+
+    }
+
+    @Override
+    public ServerResponse<PageInfo> getMovieRatingComment(int pageNum, int pageSize, Integer movie_id) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Rating> ratingList = MovieRepository.selectRatingsBymovieId(movie_id);
+        if (ratingList != null && ratingList.size() > 0) {
+            ratingList = ratingList.stream().filter(rating -> rating != null).collect(Collectors.toList());
+            if (ratingList.size() > 0) {
+                List<RatingVo> ratingVoList = ratingList.stream().map(rating -> new RatingVo(rating)).collect(Collectors.toList());
+                PageInfo pageResult = new PageInfo(ratingVoList);
+                pageResult.setList(ratingVoList);
+                return ServerResponse.createBySuccess(pageResult);
+            }
+        }  return ServerResponse.createByErrorMessage("找不到该电影的评论");
 
     }
 }

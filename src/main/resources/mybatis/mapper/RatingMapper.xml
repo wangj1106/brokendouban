@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bingo.repository.MovieRepository">
+    <resultMap id="RatingMap" type="com.bingo.domain.Rating">
+        <result property="rating" column="rating"/>
+        <result property="comment" column="comment"/>
+        <association property="user" resultMap="User"/>
+        <association property="movie" resultMap="Movie"/>
+
+    </resultMap>
+    <resultMap id="User" type="com.bingo.domain.User">
+        <result property="username" column="username" />
+    </resultMap>
+    <resultMap id="Movie" type="com.bingo.domain.Movie">
+        <result property="movie_id" column="movie_id" />
+    </resultMap>
+
+    <select id="selectRatingsBymovieId" resultMap="RatingMap"  parameterType="java.lang.Integer">
+        SELECT username,rating,comment
+        FROM rating
+        LEFT JOIN user
+        ON rating.userId=user.id WHERE movieId=#{movieId,jdbcType=INTEGER} AND rating.comment IS NOT NULL
+    </select>
+
+</mapper>

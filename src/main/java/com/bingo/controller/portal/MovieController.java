@@ -71,5 +71,13 @@ public class MovieController {
         ServerResponse<String> response=iUserService.setUserComment(user_id,movie_id,rating,comment);
         return response;
     }
+    @RequestMapping(value="showRatingByMovieId.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse showRatingByMovieId(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10")int pageSize,@RequestParam(value = "movie_id") int movie_id)
+    {
+        ServerResponse<PageInfo> response = iMovieService.getMovieRatingComment(pageNum,pageSize,movie_id);
+        return response;
+    }
+
 
 }

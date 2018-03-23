@@ -162,25 +162,28 @@ public class MovieVo {
         this.movie_id = movie.getMovie_id();
         this.movie_name = movie.getmovie_name();
         this.movie_director = movie.getMovie_director();
-        if(movie.getMovie_actor()!=null)
-        {this.movie_actor = new ArrayList<>();
-        movie_actor=Arrays.asList(movie.getMovie_actor().split(","));}
-        else {this.movie_actor=null;}
+        if (movie.getMovie_actor() != null) {
+            this.movie_actor = new ArrayList<>();
+            movie_actor = Arrays.asList(movie.getMovie_actor().split(","));
+        } else {
+            this.movie_actor = null;
+        }
         this.movie_language = movie.getMovie_language();
         this.type_id = movie.getType_id();
         this.movie_district = movie.getMovie_district();
         this.movie_date = movie.getMovie_date();
-        if(movie.getMovie_actor()!=null)
-        {
-        this.movie_keyword = new ArrayList<>();
-        movie_keyword=Arrays.asList(movie.getmovie_keyword().split(","));}
-        else {this.movie_keyword=null;}
+        if (movie.getMovie_actor() != null) {
+            this.movie_keyword = new ArrayList<>();
+            movie_keyword = Arrays.asList(movie.getmovie_keyword().split(","));
+        } else {
+            this.movie_keyword = null;
+        }
         this.pic_url = movie.getPic_url();
         this.movie_imdbid = movie.getMovie_imdbid();
         this.movie_time = movie.getMovie_time();
-        this.movie_rating=movie.getMovie_rating()/2;
-        this.movie_numVotes=movie.getMovie_numVotes();
-        this.movie_star=(Math.rint(movie.getMovie_rating()))/2;
+        this.movie_rating = movie.getMovie_rating() / 2;
+        this.movie_numVotes = movie.getMovie_numVotes();
+        this.movie_star = (Math.rint(movie.getMovie_rating())) / 2;
 
     }
 

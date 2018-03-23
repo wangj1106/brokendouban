@@ -18,4 +18,5 @@ public interface IMovieService {
     ServerResponse<PageInfo> getMovieListByName(int pageNum, int pageSize,String movie_keyword);
     ServerResponse<String> checkMovieID(Integer movie_id);
     ServerResponse<List<Movie>> getSimilarMovieInfo(Integer movie_id);
+    ServerResponse<PageInfo> getMovieRatingComment(int pageNum ,int pageSize,Integer movie_id);
 }
