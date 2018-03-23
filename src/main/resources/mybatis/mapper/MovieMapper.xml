@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bingo.repository.MovieRepository" >
+    <resultMap id="BaseResultMap" type="com.bingo.domain.Movie" >
+        <constructor >
+            <idArg column="movie_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="movie_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="movie_director" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="movie_actor" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="movie_language" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="movie_district" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="movie_date" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="movie_keyword" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="pic_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="movie_imdbid" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="movie_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="movie_numVotes" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="movie_rating" jdbcType="DOUBLE" javaType="java.lang.Double" />
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List" >
+        movie_id,movie_name,movie_director,movie_actor,movie_language,type_id,movie_district,movie_date,movie_keyword,pic_url,movie_imdbid,movie_time,movie_rating,movie_numVotes
+    </sql>
+
+    <select id="selectByMovie_id" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from movie
+        where movie_id = #{movie_id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByMovie_id" parameterType="java.lang.Integer" >
+        delete from movie
+        where movie_id = #{movie_id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.bingo.domain.Movie" >
+        insert into movie (movie_id,movie_name,movie_director,movie_actor,movie_language,type_id,movie_district,movie_date,movie_keyword,pic_url,movie_imdbid,movie_time,movie_rating,movie_numVotes)
+        values (#{movie_id,jdbcType=INTEGER}, #{movie_name,jdbcType=VARCHAR}, #{movie_director,jdbcType=VARCHAR},
+        #{movie_actor,jdbcType=VARCHAR},
+        #{movie_language,jdbcType=VARCHAR}, #{type_id,jdbcType=INTEGER},
+        #{movie_district,jdbcType=VARCHAR}, #{movie_date,jdbcType=INTEGER}, #{movie_keyword,jdbcType=VARCHAR},
+        #{pic_url,jdbcType=VARCHAR},#{movie_imdbid,jdbcType=INTEGER},#{movie_time,jdbcType=INTEGER},#{movie_rating,jdbcType=DOUBLE},#{movie_numVotes,jdbcType=INTEGER}
+        )
+
+    </insert>
+
+    <update id="updateMovie" parameterType="com.bingo.domain.Movie" >
+        update movie
+        <set>
+            <if test="movie_name != null" >
+        movie_name = #{movie_name,jdbcType=VARCHAR},
+            </if>
+            <if test="movie_director != null" >
+        movie_director = #{movie_director,jdbcType=VARCHAR},
+            </if>
+            <if test="movie_actor != null" >
+        movie_actor = #{movie_actor,jdbcType=VARCHAR},
+            </if>
+            <if test="movie_language != null" >
+        movie_language = #{movie_language,jdbcType=VARCHAR},
+            </if>
+            <if test="type_id != null" >
+        type_id = #{type_id,jdbcType=INTEGER},
+            </if>
+            <if test="movie_district != null" >
+        movie_district = #{movie_district,jdbcType=VARCHAR},
+            </if>
+            <if test="movie_date != null" >
+        movie_date = #{movie_date,jdbcType=INTEGER},
+            </if>
+            <if test="movie_keyword != null" >
+        movie_keyword = #{movie_keyword,jdbcType=VARCHAR},
+            </if>
+            <if test="pic_url != null" >
+        pic_url = #{pic_url,jdbcType=VARCHAR}
+            </if>
+            <if test="movie_imdbid != null" >
+                movie_imdbid = #{movie_imdbid,jdbcType=VARCHAR}
+            </if>
+            <if test="movie_time != null" >
+                movie_time = #{movie_time,jdbcType=INTEGER}
+            </if>
+            <if test="movie_rating != null" >
+                movie_rating = #{movie_rating,jdbcType=DOUBLE}
+            </if>
+            <if test="movie_numVotes != null" >
+                movie_numVotes = #{movie_numVotes,jdbcType=INTEGER}
+            </if>
+        </set>
+        where movie_id = #{movie_id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from movie
+        <!--ORDER BY movie_id DESC-->
+    </select>
+
+    <select id="selectListByCategory" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from movie
+        where movie_keyword LIKE "%"#{movie_keyword,jdbcType=VARCHAR}"%"
+        <!--ORDER BY movie_id DESC-->
+    </select>
+
+    <select id="selectListByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from movie
+    where movie_name LIKE "%"#{movie_name,jdbcType=VARCHAR}"%"
+    ORDER BY movie_id DESC
+    </select>
+
+
+
+    <select id="checkMovieID" resultType="int" parameterType="java.lang.Integer">
+        SELECT count(1) from movie
+        where movie_id = #{movie_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectSimilarMovieInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM simmovies
+        LEFT JOIN movie
+        ON simmovies.simId=movie.movie_id
+        WHERE mid=#{mid,jdbcType=INTEGER};
+    </select>
+</mapper>

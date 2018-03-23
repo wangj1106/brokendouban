@@ -1,0 +1,17 @@
+com\bingo\common\ResponseCode.class
+com\bingo\BrokendoubanApplication.class
+com\bingo\common\TokenCache.class
+com\bingo\common\ServerResponse.class
+com\bingo\common\TokenCache$1.class
+com\bingo\repository\UserRepository.class
+com\bingo\controller\portal\UserController.class
+com\bingo\common\Const$Role.class
+com\bingo\service\IUserService.class
+com\bingo\domain\User.class
+com\bingo\service\impl\UserServiceImpl.class
+com\bingo\controller\backend\UserManageController.class
+com\bingo\domain\Movie.class
+com\bingo\config\MybatisConf.class
+com\bingo\util\MD5Util.class
+com\bingo\common\Const.class
+com\bingo\service\IMovieService.class

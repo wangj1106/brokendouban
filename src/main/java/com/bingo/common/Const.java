@@ -11,4 +11,9 @@ public class Const {
         int ROLE_CUSTOMER = 0;
         int ROLE_ADMIN = 1;
     }
+
+    public interface Sex{
+        int SEX_MALE = 0;
+        int SEX_FEMALE = 1;
+    }
 }

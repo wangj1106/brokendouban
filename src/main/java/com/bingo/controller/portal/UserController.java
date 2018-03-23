@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
 @CrossOrigin
@@ -114,5 +117,13 @@ public class UserController {
         }
         return iUserService.getInformation(currentUser.getId());
     }
-
+    @RequestMapping(value = "get_recommend.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<List> get_recommend(HttpSession session){
+        User currentUser = (User)session.getAttribute(Const.CURRENT_USER);
+        if(currentUser == null){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"未登录，需要强制登录status=10");
+        }
+        return iUserService.getRecommend(currentUser.getId());
+    }
 }

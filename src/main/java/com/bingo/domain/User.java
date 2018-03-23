@@ -24,7 +24,11 @@ public class User {
 
     private Date updateTime;
 
-    public User(Integer id, String username, String password, String email, String phone, String question, String answer, Integer role, Date createTime, Date updateTime) {
+    private String age;
+
+    private Integer sex;
+
+    public User(Integer id, String username, String password, String email, String phone, String question, String answer, Integer role, Date createTime, Date updateTime,String age,Integer sex) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -35,6 +39,8 @@ public class User {
         this.role = role;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.age=age;
+        this.sex=sex;
     }
 
     public User() {
@@ -119,5 +125,21 @@ public class User {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 }
