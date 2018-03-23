@@ -242,4 +242,26 @@
             movie.movie_id =recommend.mid and recommend.uid=#{id,jdbcType=INTEGER}
     </select>
 
+    <insert id="setUserComment" parameterType="map">
+        INSERT INTO
+        rating ( userId,movieId
+        <if test="rating!= null" >
+            ,rating
+        </if>
+        <if test="comment!= null" >
+            ,comment
+        </if>
+        )
+        VALUES(  #{user_id,jdbcType=INTEGER}  ,#{movie_id,jdbcType=INTEGER}
+        <if test="rating!= null" >
+            , #{rating,jdbcType=DOUBLE}
+        </if>
+        <if test="comment!= null" >
+            , #{comment,jdbcType=VARCHAR}
+        </if>
+        )
+    </insert>
+
+
+
 </mapper>

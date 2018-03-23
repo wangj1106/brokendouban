@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 
 @CrossOrigin
 @Controller
-@CrossOrigin
 @RequestMapping("/manage/user")
 public class UserManageController {
 
