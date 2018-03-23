@@ -233,7 +233,7 @@ public class UserServiceImpl implements IUserService {
             return ServerResponse.createByErrorMessage("对不起，评论失败啦！");
         }
         else{
-            return ServerResponse.createBySuccessMessage("评论成功");
+            return ServerResponse.createBySuccessMessage("评价成功");
         }
 
     }

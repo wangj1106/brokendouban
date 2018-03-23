@@ -4,6 +4,7 @@ import com.bingo.common.Const;
 import com.bingo.common.ResponseCode;
 import com.bingo.common.ServerResponse;
 import com.bingo.domain.User;
+import com.bingo.repository.UserRepository;
 import com.bingo.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,6 +26,8 @@ public class UserController {
 
     @Autowired
     private IUserService iUserService;
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
     @ResponseBody
@@ -38,7 +42,20 @@ public class UserController {
     @RequestMapping(value = "logout.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<String> logout(HttpSession session){
+        int id =((User)session.getAttribute(Const.CURRENT_USER)).getId();
+//        userRepository.changeRecommend(id);
+        Process proc = null;
+        try {
+            proc = Runtime.getRuntime().exec("python " + Const.PY_URL+"\\src\\main\\resources\\testItem.py "+id);
+            proc.waitFor();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         session.removeAttribute(Const.CURRENT_USER);
+
         return ServerResponse.createBySuccess();
     }
 
