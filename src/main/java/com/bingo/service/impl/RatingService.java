@@ -44,4 +44,22 @@ public class RatingService implements IRatingService {
         Rating rating = ratingRepository.selectRatingByUserIdMovieId(userId,movieId);
         return ServerResponse.createBySuccess(rating);
     }
+
+    @Override
+    public ServerResponse<PageInfo> getRatingList(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize, "create_time");
+        List<Rating> ratingList = ratingRepository.selectRatingList();
+        PageInfo pageResult = new PageInfo(ratingList);
+        pageResult.setList(ratingList);
+        return ServerResponse.createBySuccess(pageResult);
+    }
+
+    @Override
+    public ServerResponse<String> deleteRating(int ratingId) {
+        int resultCount = ratingRepository.deleteByPrimaryKey(ratingId);
+        if (resultCount == 0) {
+            return ServerResponse.createByErrorMessage("删除评价操作失败，请检查");
+        }
+        return ServerResponse.createBySuccessMessage("删除评价操作成功");
+    }
 }

@@ -8,4 +8,7 @@ public interface IRatingService {
     ServerResponse<Rating> addRating(Rating rating);
     ServerResponse<PageInfo> getUserRatingList(int pageNum, int pageSize, int userId);
     ServerResponse<Rating> getUserRating(int userId, int movieId);
+    ServerResponse<PageInfo> getRatingList(int pageNum, int pageSize);
+    ServerResponse<String> deleteRating(int ratingId);
+
 }

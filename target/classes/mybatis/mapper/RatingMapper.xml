@@ -41,4 +41,16 @@
         where movie_id = #{movie_id,jdbcType=INTEGER} and user_id = #{user_id,jdbcType=INTEGER}
     </select>
 
+    <select id="selectRatingList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from rating
+
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from rating
+        where rating_id = #{rating_id,jdbcType=INTEGER}
+    </delete>
+
 </mapper>

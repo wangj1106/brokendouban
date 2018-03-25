@@ -12,4 +12,6 @@ public interface RatingRepository {
     List<Rating> selectUserRatingList(int user_id);
     int checkUserRating(@Param("user_id") int user_id, @Param("movie_id") int movie_id);
     Rating selectRatingByUserIdMovieId(@Param("user_id") int user_id, @Param("movie_id") int movie_id);
+    List<Rating> selectRatingList();
+    int deleteByPrimaryKey(int rating_id);
 }
