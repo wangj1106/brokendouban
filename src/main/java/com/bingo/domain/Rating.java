@@ -9,18 +9,23 @@ public class Rating {
     private Double rating;
     private String comment;
     private Date create_time;
+    private String username;
+    private String movie_name;
+
 
     public Rating() {
         super();
     }
 
-    public Rating(Integer rating_id, Integer user_id, Integer movie_id, Double rating, String comment, Date create_time) {
+    public Rating(Integer rating_id, Integer user_id, Integer movie_id, Double rating, String comment, Date create_time, String username, String movie_name) {
         this.rating_id = rating_id;
         this.user_id = user_id;
         this.movie_id = movie_id;
         this.rating = rating;
         this.comment = comment;
         this.create_time = create_time;
+        this.username = username;
+        this.movie_name = movie_name;
     }
 
     public Rating(Integer user_id, Integer movie_id, Double rating, String comment) {
@@ -76,5 +81,21 @@ public class Rating {
 
     public void setCreate_time(Date create_time) {
         this.create_time = create_time;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUser_name(String username) {
+        this.username = username;
+    }
+
+    public String getMovie_name() {
+        return movie_name;
+    }
+
+    public void setMovie_name(String movie_name) {
+        this.movie_name = movie_name;
     }
 }
