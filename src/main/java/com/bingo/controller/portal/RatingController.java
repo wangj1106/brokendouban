@@ -57,4 +57,11 @@ public class RatingController {
         return response;
     }
 
+    @RequestMapping(value="movieRatingList.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<PageInfo> showMovieRatingList(@RequestParam(value = "pageNum",defaultValue = "1") int pageNum, @RequestParam(value = "pageSize",defaultValue = "10")int pageSize, int movieId){
+        ServerResponse<PageInfo> response = iRatingService.getMovieRatingList(pageNum, pageSize, movieId);
+        return response;
+    }
+
 }

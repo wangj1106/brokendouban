@@ -53,4 +53,12 @@
         where rating_id = #{rating_id,jdbcType=INTEGER}
     </delete>
 
+    <select id="selectMovieRatingList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from rating
+        where movie_id = #{movie_id,jdbcType=INTEGER}
+
+    </select>
+
 </mapper>
