@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bingo.repository.RatingRepository">
+    <resultMap id="BaseResultMap" type="com.bingo.domain.Rating" >
+        <constructor >
+            <idArg column="rating_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="movie_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="rating" jdbcType="DOUBLE" javaType="java.lang.Double" />
+            <arg column="comment" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List" >
+        rating_id, user_id, movie_id, rating, comment,create_time
+    </sql>
+
+    <insert id="insert" parameterType="com.bingo.domain.Rating" >
+        insert into rating (rating_id, user_id, movie_id, rating, comment, create_time)
+        values (#{rating_id,jdbcType=INTEGER}, #{user_id,jdbcType=INTEGER},#{movie_id,jdbcType=INTEGER},#{rating,jdbcType=DOUBLE},
+        #{comment,jdbcType=VARCHAR},now())
+    </insert>
+
+    <select id="selectUserRatingList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from rating
+        where user_id = #{user_id,jdbcType=INTEGER}
+
+    </select>
+
+    <select id="checkUserRating" resultType="int" parameterType="map">
+        SELECT count(1) from rating
+        where movie_id = #{movie_id,jdbcType=INTEGER} and user_id = #{user_id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectRatingByUserIdMovieId" resultMap="BaseResultMap" parameterType="map" >
+        select
+        <include refid="Base_Column_List" />
+        from rating
+        where movie_id = #{movie_id,jdbcType=INTEGER} and user_id = #{user_id,jdbcType=INTEGER}
+    </select>
+
+</mapper>
