@@ -1,6 +1,7 @@
 package com.bingo.repository;
 
 import com.bingo.domain.Movie;
+import com.bingo.domain.MovieRecommend;
 import com.bingo.domain.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -40,6 +41,8 @@ public interface UserRepository {
     List<User> selectList();
 
     List<Movie> selectRecommend(Integer id);
+
+    List<MovieRecommend> selectRecommend2(Integer id);
 
     int setUserComment(@Param(value = "user_id")Integer user_id,@Param(value = "movie_id")Integer movie_id,@Param(value = "rating") Double rating,@Param(value = "comment")String comment);
 

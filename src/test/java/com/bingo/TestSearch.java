@@ -1,6 +1,7 @@
 package com.bingo;
 
 import com.bingo.common.Const;
+import com.bingo.controller.portal.UserController;
 import com.bingo.domain.Movie;
 //import com.bingo.repository.MovieSearchRepository;
 import com.bingo.repository.UserRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Controller;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
@@ -20,10 +22,11 @@ public class TestSearch {
 
         @Autowired
         private UserRepository userRepository;
-        @Autowired
+
         @Test
         public void test() {
-            userRepository.changeRecommend(1);
+
+            System.out.println(userRepository.selectRecommend2(1).get(0).getReason_name());
         }
         @Test
         public void test2()

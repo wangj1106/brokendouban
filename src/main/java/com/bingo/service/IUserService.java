@@ -20,6 +20,7 @@ public interface IUserService {
     ServerResponse checkAdminRole(User user);
     ServerResponse<PageInfo> getUserList(int pageNum, int pageSize);
     ServerResponse<List> getRecommend(Integer userId);
+    ServerResponse<List> getRecommend2(Integer userId);
     ServerResponse<String> deleteUser(Integer userId);
     ServerResponse<String> setUserComment(Integer movie_id, Integer user_id, Double rating, String comment);
 

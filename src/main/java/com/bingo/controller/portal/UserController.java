@@ -143,4 +143,14 @@ public class UserController {
         }
         return iUserService.getRecommend(currentUser.getId());
     }
+
+    @RequestMapping(value = "get_recommend2.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<List> get_recommend2(HttpSession session){
+        User currentUser = (User)session.getAttribute(Const.CURRENT_USER);
+        if(currentUser == null){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"未登录，需要强制登录status=10");
+        }
+        return iUserService.getRecommend2(currentUser.getId());
+    }
 }

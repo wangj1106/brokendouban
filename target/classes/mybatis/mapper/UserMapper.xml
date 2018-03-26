@@ -242,6 +242,18 @@
             movie.movie_id =recommend.mid and recommend.uid=#{id,jdbcType=INTEGER}
     </select>
 
+    <select id="selectRecommend2" resultType="com.bingo.domain.MovieRecommend" parameterType="int">
+
+        select m1.movie_id,m1.movie_name,m1.movie_director,m1.movie_actor,m1.movie_language,m1.type_id,
+        m1.movie_district,m1.movie_date,m1.movie_keyword,m1.pic_url,m1.movie_imdbid,m1.movie_time,m1.movie_rating,m2.movie_name as reason_name
+        from
+        itemcf2,movie as m1,movie as m2
+        where
+        m1.movie_id =itemcf2.mid and itemcf2.uid=#{id,jdbcType=INTEGER} and m2.movie_id=itemcf2.reasonid
+        ORDER BY rating DESC
+        Limit 5
+    </select>
+
     <insert id="setUserComment" parameterType="map">
         INSERT INTO
         rating ( userId,movieId

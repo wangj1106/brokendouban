@@ -3,6 +3,7 @@ package com.bingo.service.impl;
 import com.bingo.common.ServerResponse;
 import com.bingo.domain.Movie;
 import com.bingo.repository.MovieRepository;
+import com.bingo.repository.RatingRepository;
 import com.bingo.service.IMovieService;
 import com.bingo.vo.MovieVo;
 import com.github.pagehelper.PageHelper;
@@ -18,6 +19,8 @@ import java.util.stream.Collectors;
 public class MovieServiceImpl implements IMovieService {
     @Autowired
     private MovieRepository MovieRepository;
+    @Autowired
+    private RatingRepository RatingRepository;
 
     @Override
     public ServerResponse<String> addMovie(Movie movie) {
@@ -39,6 +42,7 @@ public class MovieServiceImpl implements IMovieService {
         if (resultCount == 0) {
             return ServerResponse.createBySuccess("删除电影操作失败，请检查");
         }
+
         return ServerResponse.createByErrorMessage("删除电影操作成功");
 
     }

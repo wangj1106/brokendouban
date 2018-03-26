@@ -4,6 +4,7 @@ import com.bingo.common.Const;
 import com.bingo.common.ServerResponse;
 import com.bingo.common.TokenCache;
 import com.bingo.domain.Movie;
+import com.bingo.domain.MovieRecommend;
 import com.bingo.domain.User;
 import com.bingo.repository.UserRepository;
 import com.bingo.service.IUserService;
@@ -203,6 +204,17 @@ public class UserServiceImpl implements IUserService {
             recommendMovieVoList.add(movieVo);
         }
         return ServerResponse.createBySuccess(recommendMovieVoList);
+    }
+
+    @Override
+    public ServerResponse<List> getRecommend2(Integer userId) {
+        List<MovieRecommend> recommendList = new ArrayList<>();
+        recommendList = userRepository.selectRecommend2(userId);
+        if (recommendList == null) {
+            return ServerResponse.createByErrorMessage("找不到当前用户的推荐信息");
+        }
+
+        return ServerResponse.createBySuccess(recommendList);
     }
 
 
