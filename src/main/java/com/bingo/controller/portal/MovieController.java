@@ -72,4 +72,12 @@ public class MovieController {
         return response;
     }
 
+    @RequestMapping(value = "getQuestionnaire.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse getQuestionaire()
+    {
+        ServerResponse response=iMovieService.getMovieQuestionnaire();
+        return response;
+    }
+
 }

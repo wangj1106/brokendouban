@@ -1,6 +1,7 @@
 package com.bingo.repository;
 
 import com.bingo.domain.Movie;
+import com.bingo.domain.MovieQuestionnaire;
 import com.bingo.vo.MovieVo;
 import org.springframework.stereotype.Repository;
 
@@ -26,5 +27,7 @@ public interface MovieRepository {
     List<Movie> selectListByName(String movie_name);
 
     List<Movie> selectSimilarMovieInfo(Integer movie_id);
+
+    List<MovieQuestionnaire> selectQuestionnaire();
 
 }

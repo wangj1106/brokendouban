@@ -2,6 +2,7 @@ package com.bingo.service;
 
 import com.bingo.common.ServerResponse;
 import com.bingo.domain.Movie;
+import com.bingo.domain.MovieQuestionnaire;
 import com.bingo.vo.MovieVo;
 import com.github.pagehelper.PageInfo;
 
@@ -18,4 +19,5 @@ public interface IMovieService {
     ServerResponse<PageInfo> getMovieListByName(int pageNum, int pageSize,String movie_keyword);
     ServerResponse<String> checkMovieID(Integer movie_id);
     ServerResponse<List<Movie>> getSimilarMovieInfo(Integer movie_id);
+    ServerResponse<List<MovieQuestionnaire>> getMovieQuestionnaire();
 }

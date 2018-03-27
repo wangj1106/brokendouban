@@ -2,6 +2,7 @@ package com.bingo.service.impl;
 
 import com.bingo.common.ServerResponse;
 import com.bingo.domain.Movie;
+import com.bingo.domain.MovieQuestionnaire;
 import com.bingo.repository.MovieRepository;
 import com.bingo.repository.RatingRepository;
 import com.bingo.service.IMovieService;
@@ -155,6 +156,15 @@ public class MovieServiceImpl implements IMovieService {
             return ServerResponse.createBySuccess(movieList);
         }
         return ServerResponse.createByErrorMessage("没有相似的电影");
+
+    }
+
+    @Override
+    public ServerResponse<List<MovieQuestionnaire>> getMovieQuestionnaire() {
+        List<MovieQuestionnaire> Questionnaire=MovieRepository.selectQuestionnaire();
+        return ServerResponse.createBySuccess(Questionnaire);
+
+
 
     }
 }
