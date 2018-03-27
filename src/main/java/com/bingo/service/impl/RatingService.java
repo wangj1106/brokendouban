@@ -19,11 +19,21 @@ public class RatingService implements IRatingService {
 
     @Override
     public ServerResponse<Rating> addRating(Rating rating) {
-        int resultCount = ratingRepository.insert(rating);
-        if (resultCount == 0) {
-            return ServerResponse.createByErrorMessage("添加影评操作失败，请检查");
+        int check = ratingRepository.checkUserRating(rating.getUser_id(),rating.getMovie_id());
+        if (check == 0 ) {
+            int resultCount = ratingRepository.insert(rating);
+            if (resultCount == 0) {
+                return ServerResponse.createByErrorMessage("添加影评操作失败，请检查");
+            }
+            return ServerResponse.createBySuccessMessage("添加影评操作成功");
         }
-        return ServerResponse.createBySuccessMessage("添加影评操作成功");
+        else {
+            int resultCount = ratingRepository.update(rating);
+            if (resultCount == 0) {
+                return ServerResponse.createByErrorMessage("修改影评操作失败，请检查");
+            }
+            return ServerResponse.createBySuccessMessage("修改影评操作成功");
+        }
     }
 
     @Override

@@ -40,6 +40,7 @@
         #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
         now(),#{age,jdbcType=VARCHAR},#{sex,jdbcType=INTEGER})
     </insert>
+
     <insert id="insertSelective" parameterType="com.bingo.domain.User" >
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -240,6 +241,7 @@
             movie,recommend
         where
             movie.movie_id =recommend.mid and recommend.uid=#{id,jdbcType=INTEGER}
+        UNION
     </select>
 
     <select id="selectRecommend2" resultType="com.bingo.domain.MovieRecommend" parameterType="int">

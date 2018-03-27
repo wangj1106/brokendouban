@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface RatingRepository {
     int insert(Rating record);
+    int update(Rating record);
     List<Rating> selectUserRatingList(int user_id);
     int checkUserRating(@Param("user_id") int user_id, @Param("movie_id") int movie_id);
     Rating selectRatingByUserIdMovieId(@Param("user_id") int user_id, @Param("movie_id") int movie_id);

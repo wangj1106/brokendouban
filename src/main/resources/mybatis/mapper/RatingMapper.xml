@@ -23,6 +23,21 @@
         #{comment,jdbcType=VARCHAR},now())
     </insert>
 
+    <update id="update" parameterType="com.bingo.domain.Rating" >
+        UPDATE rating
+        <set >
+        <if test="rating != null" >
+        rating = #{rating,jdbcType=DOUBLE},
+        </if>
+        <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+        </if>
+        create_time = now()
+        </set>
+        where user_id = #{user_id,jdbcType = INTEGER } AND
+        movie_id = #{movie_id,jdbcType = INTEGER }
+    </update>
+
     <select id="selectUserRatingList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         SELECT
         rating.rating_id, rating.user_id, rating.movie_id, rating.rating, rating.`comment`,rating.create_time, user.username, movie.movie_name
