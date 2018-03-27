@@ -47,4 +47,6 @@ public interface UserRepository {
     int setUserComment(@Param(value = "user_id")Integer user_id,@Param(value = "movie_id")Integer movie_id,@Param(value = "rating") Double rating,@Param(value = "comment")String comment);
 
     int changeRecommend(Integer id);
+
+    int updateProtrait(Integer id);
 }

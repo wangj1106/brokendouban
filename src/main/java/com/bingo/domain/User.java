@@ -28,7 +28,9 @@ public class User {
 
     private Integer sex;
 
-    public User(Integer id, String username, String password, String email, String phone, String question, String answer, Integer role, Date createTime, Date updateTime,String age,Integer sex) {
+    private String portrait;
+
+    public User(Integer id, String username, String password, String email, String phone, String question, String answer, Integer role, Date createTime, Date updateTime,String age,Integer sex,String portrait) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -41,6 +43,7 @@ public class User {
         this.updateTime = updateTime;
         this.age=age;
         this.sex=sex;
+        this.portrait=portrait;
     }
 
     public User() {
@@ -141,5 +144,13 @@ public class User {
 
     public void setSex(Integer sex) {
         this.sex = sex;
+    }
+
+    public String getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
     }
 }

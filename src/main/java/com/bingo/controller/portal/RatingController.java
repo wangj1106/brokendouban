@@ -5,6 +5,7 @@ import com.bingo.common.ServerResponse;
 import com.bingo.domain.Rating;
 import com.bingo.domain.User;
 import com.bingo.service.IRatingService;
+import com.bingo.service.IUserService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,16 +19,20 @@ import javax.servlet.http.HttpSession;
 public class RatingController {
     @Autowired
     private IRatingService iRatingService;
+    @Autowired
+    private IUserService iUserService;
 
     @RequestMapping(value="add.do",method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<Rating> addMovie(HttpSession session, int movieId, double rating, String comment){
+
         User currentUser = (User)session.getAttribute(Const.CURRENT_USER);
         if(currentUser == null){
             return ServerResponse.createByErrorMessage("用户未登录");
         }
         int userId =currentUser.getId();
-        Rating ratingItem = new Rating(userId, movieId, rating, comment);
+        String portrait=null;
+        Rating ratingItem = new Rating(userId, movieId, rating, comment,portrait);
 
         ServerResponse<Rating> response = iRatingService.addRating(ratingItem);
         return response;

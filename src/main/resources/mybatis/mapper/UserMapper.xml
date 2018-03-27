@@ -15,10 +15,11 @@
             <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
             <arg column="age" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="sex" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="portrait" jdbcType="VARCHAR" javaType="java.lang.String" />
         </constructor>
     </resultMap>
     <sql id="Base_Column_List" >
-        id, username, password, email, phone, question, answer, role, create_time, update_time, age, sex
+        id, username, password, email, phone, question, answer, role, create_time, update_time, age, sex, portrait
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
@@ -40,6 +41,7 @@
         #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
         now(),#{age,jdbcType=VARCHAR},#{sex,jdbcType=INTEGER})
     </insert>
+
     <insert id="insertSelective" parameterType="com.bingo.domain.User" >
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -154,6 +156,9 @@
             </if>
             <if test="sex != null" >
                 sex = #{sex, jdbcType=INTEGER},
+            </if>
+            <if test="portrait != null" >
+                portrait = #{portrait, jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
