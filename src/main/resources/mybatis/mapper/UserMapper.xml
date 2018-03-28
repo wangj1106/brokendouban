@@ -239,12 +239,16 @@
         ORDER BY id DESC
     </select>
 
+
+
     <select id="selectRecommend" resultType="com.bingo.domain.Movie" parameterType="int">
 
         select movie_id,movie_name,movie_director,movie_actor,movie_language,type_id,movie_district,movie_date,movie_keyword,pic_url,movie_imdbid,movie_time,movie_rating from
-            movie,recommend
+        movie,recommend
         where
-            movie.movie_id =recommend.mid and recommend.uid=#{id,jdbcType=INTEGER}
+        movie.movie_id =recommend.mid and recommend.uid=#{id,jdbcType=INTEGER}
+        ORDER BY rating DESC
+        Limit 5
     </select>
 
     <select id="selectRecommend2" resultType="com.bingo.domain.MovieRecommend" parameterType="int">

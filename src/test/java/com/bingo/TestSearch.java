@@ -4,6 +4,7 @@ import com.bingo.common.Const;
 import com.bingo.controller.portal.UserController;
 import com.bingo.domain.Movie;
 //import com.bingo.repository.MovieSearchRepository;
+import com.bingo.domain.User;
 import com.bingo.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,11 +24,7 @@ public class TestSearch {
         @Autowired
         private UserRepository userRepository;
 
-        @Test
-        public void test() {
 
-            System.out.println(userRepository.selectRecommend2(1).get(0).getReason_name());
-        }
         @Test
         public void test2()
         {

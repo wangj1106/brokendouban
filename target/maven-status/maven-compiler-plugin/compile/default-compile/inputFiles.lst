@@ -3,12 +3,14 @@ D:\IdeaProjects\brokendouban\src\main\java\com\bingo\repository\MovieRepository.
 D:\IdeaProjects\brokendouban\src\main\java\com\bingo\common\Const.java
 D:\IdeaProjects\brokendouban\src\main\java\com\bingo\repository\RatingRepository.java
 D:\IdeaProjects\brokendouban\src\main\java\com\bingo\controller\backend\RatingManageController.java
+D:\IdeaProjects\brokendouban\src\main\java\com\bingo\domain\MovieQuestionnaire.java
 D:\IdeaProjects\brokendouban\src\main\java\com\bingo\util\MD5Util.java
 D:\IdeaProjects\brokendouban\src\main\java\com\bingo\common\ServerResponse.java
 D:\IdeaProjects\brokendouban\src\main\java\com\bingo\controller\backend\MovieManageController.java
 D:\IdeaProjects\brokendouban\src\main\java\com\bingo\service\IRatingService.java
 D:\IdeaProjects\brokendouban\src\main\java\com\bingo\domain\Movie.java
 D:\IdeaProjects\brokendouban\src\main\java\com\bingo\service\impl\MovieServiceImpl.java
+D:\IdeaProjects\brokendouban\src\main\java\com\bingo\domain\MovieRecommend.java
 D:\IdeaProjects\brokendouban\src\main\java\com\bingo\service\IUserService.java
 D:\IdeaProjects\brokendouban\src\main\java\com\bingo\vo\MovieVo.java
 D:\IdeaProjects\brokendouban\src\main\java\com\bingo\repository\UserRepository.java

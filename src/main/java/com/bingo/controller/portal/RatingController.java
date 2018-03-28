@@ -12,6 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 @Controller
 @CrossOrigin
@@ -31,6 +35,19 @@ public class RatingController {
             return ServerResponse.createByErrorMessage("用户未登录");
         }
         int userId =currentUser.getId();
+        try {
+            FileOutputStream fs = new FileOutputStream(new File("D:\\data\\log.txt"), true); //在该文件的末尾添加内容
+            fs.write((String.valueOf(userId) + "::" + String.valueOf(movieId) + "::" + String.valueOf(rating) + "\n").getBytes());
+            fs.flush();   //清空缓存里的数据，并通知底层去进行实际的写操作
+            fs.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         String portrait=null;
         Rating ratingItem = new Rating(userId, movieId, rating, comment,portrait);
 
