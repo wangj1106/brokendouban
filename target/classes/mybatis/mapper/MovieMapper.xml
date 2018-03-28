@@ -19,6 +19,19 @@
             <arg column="movie_rating" jdbcType="DOUBLE" javaType="java.lang.Double" />
         </constructor>
     </resultMap>
+    <resultMap id="BaseResultMap2" type="com.bingo.domain.MovieQuestionnaire" >
+        <constructor >
+            <idArg column="movie_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="movie_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="movie_director" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="movie_actor" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="movie_district" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="movie_year" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="movie_keyword" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="pic_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="movie_introduction" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+    </resultMap>
     <sql id="Base_Column_List" >
         movie_id,movie_name,movie_director,movie_actor,movie_language,type_id,movie_district,movie_date,movie_keyword,pic_url,movie_imdbid,movie_time,movie_rating,movie_numVotes
     </sql>
@@ -113,6 +126,12 @@
     from movie
     where movie_name LIKE "%"#{movie_name,jdbcType=VARCHAR}"%"
     ORDER BY movie_id DESC
+    </select>
+
+    <select id="selectQuestionnaire" resultMap="BaseResultMap2" parameterType="java.lang.String">
+        SELECT
+        *
+        from query
     </select>
 
 

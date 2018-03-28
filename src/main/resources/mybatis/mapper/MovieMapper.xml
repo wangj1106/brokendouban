@@ -132,7 +132,7 @@
         SELECT
         *
         from query
-        </select>
+    </select>
 
 
 

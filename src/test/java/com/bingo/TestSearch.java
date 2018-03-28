@@ -5,6 +5,7 @@ import com.bingo.controller.portal.UserController;
 import com.bingo.domain.Movie;
 //import com.bingo.repository.MovieSearchRepository;
 import com.bingo.domain.User;
+import com.bingo.repository.MovieRepository;
 import com.bingo.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,12 +25,14 @@ public class TestSearch {
         @Autowired
         private UserRepository userRepository;
 
+        @Autowired
+        private MovieRepository movieRepository;
 
         @Test
         public void test2()
         {
 
-            System.out.println(Const.PY_URL+"\\src\\main\\resources\\testItem.py");
+            System.out.println(movieRepository.selectQuestionnaire());
 
         }
         @Test
