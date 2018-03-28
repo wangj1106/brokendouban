@@ -33,7 +33,7 @@ public class UserController {
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session) {
         ServerResponse<User> response = iUserService.login(username, password);
-        if (response.isSuccess()) {
+        if (response.getStatus()!=1) {
             session.setAttribute(Const.CURRENT_USER, response.getData());
         }
         return response;
