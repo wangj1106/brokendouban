@@ -53,13 +53,13 @@
     </select>
 
     <select id="selectRatingByUserIdMovieId" resultMap="BaseResultMap" parameterType="map" >
-        SELECT rating.rating_id, rating.user_id, rating.movie_id, rating.rating, rating.`comment`,rating.create_time, user.username, movie.movie_name
+        SELECT rating.rating_id, rating.user_id, rating.movie_id, rating.rating, rating.`comment`,rating.create_time, user.username, movie.movie_name,user.portrait
         from rating LEFT JOIN movie on rating.movie_id = movie.movie_id LEFT JOIN user on user.id = rating.user_id
         where rating.movie_id = #{movie_id,jdbcType=INTEGER} and rating.user_id = #{user_id,jdbcType=INTEGER}
     </select>
 
     <select id="selectRatingList" resultMap="BaseResultMap">
-        SELECT rating.rating_id, rating.user_id, rating.movie_id, rating.rating, rating.`comment`,rating.create_time, user.username, movie.movie_name
+        SELECT rating.rating_id, rating.user_id, rating.movie_id, rating.rating, rating.`comment`,rating.create_time, user.username, movie.movie_name,user.portrait
         from rating LEFT JOIN movie on rating.movie_id = movie.movie_id LEFT JOIN user on user.id = rating.user_id
 
 
