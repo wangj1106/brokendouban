@@ -6,6 +6,7 @@ import com.bingo.common.TokenCache;
 import com.bingo.domain.Movie;
 import com.bingo.domain.MovieRecommend;
 import com.bingo.domain.User;
+import com.bingo.repository.RatingRepository;
 import com.bingo.repository.UserRepository;
 import com.bingo.service.IUserService;
 import com.bingo.util.MD5Util;
@@ -25,6 +26,9 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private RatingRepository ratingRepository;
+
     @Override
     public ServerResponse<User> login(String username, String password) {
         int resultCount = userRepository.checkUsername(username);
@@ -40,7 +44,11 @@ public class UserServiceImpl implements IUserService {
         }
 
         user.setPassword(org.apache.commons.lang3.StringUtils.EMPTY);
+        int result = ratingRepository.checkUser(user.getId());
+        if (result!=0)
         return ServerResponse.createBySuccess("登陆成功", user);
+        else
+            return ServerResponse.createByNeedQuestionnaire("登录成功，请填写问卷",user);
     }
 
     public ServerResponse<String> register(User user) {
