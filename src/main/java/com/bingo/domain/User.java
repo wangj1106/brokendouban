@@ -46,6 +46,21 @@ public class User {
         this.portrait=portrait;
     }
 
+    public User(Integer id, String username, String password, String email, String phone, String question, String answer, Integer role, Date createTime, Date updateTime,String age,Integer sex) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.question = question;
+        this.answer = answer;
+        this.role = role;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.age=age;
+        this.sex=sex;
+    }
+
     public User() {
         super();
     }
