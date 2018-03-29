@@ -285,7 +285,7 @@
 
     <update id="changeRecommend"  parameterType="int">
         UPDATE itemcf2
-        SET rating=rating*0.9
+        SET rating=rating*0.5
         WHERE uid = #{userId}
     </update>
 

@@ -1,5 +1,6 @@
 package com.bingo.service.impl;
 
+import com.bingo.common.Const;
 import com.bingo.common.ServerResponse;
 import com.bingo.domain.Rating;
 import com.bingo.repository.RatingRepository;
@@ -9,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -81,4 +83,19 @@ public class RatingService implements IRatingService {
         pageResult.setList(movieRatingList);
         return ServerResponse.createBySuccess(pageResult);
     }
+
+    @Override
+    public void recommendNow(Integer userId) {
+        Process proc = null;
+        try {
+            proc = Runtime.getRuntime().exec("python " + Const.PY_URL+userId);
+            proc.waitFor();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

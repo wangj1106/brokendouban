@@ -53,7 +53,7 @@ class ItemBasedCF():
         db = pymysql.connect("bingodatabase.mysqldb.chinacloudapi.cn", "bingodatabase%bingo", "Brokendouban123",
                              databasename)
         cursor = db.cursor()
-        cursor.execute("SELECT userId,movieId,rating FROM rating where userId = %s" % user)
+        cursor.execute("SELECT user_id,movie_id,rating FROM rating where user_id = %s" % user)
         data = cursor.fetchall()
         print(enumerate(data))
         watched_movie = {}
@@ -91,6 +91,10 @@ class ItemBasedCF():
         itemcf.movie_sim_mat=movie_sim
         itemcf.trainset=itemcf.loaddatebase2("test4",user)
         itemcf.recommendedset=itemcf.loaddatebase3("test4",user)
+        itemcf.recommendedset.setdefault(user,())
+        # if (itemcf.recommendedset[user]=={}):
+        #     itemcf.recommendedset[user]=0;
+        print(itemcf.recommendedset)
         result = itemcf.recommend(user)
         return result
     def recommend(self, user):

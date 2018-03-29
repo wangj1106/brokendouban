@@ -11,5 +11,6 @@ public interface IRatingService {
     ServerResponse<PageInfo> getRatingList(int pageNum, int pageSize);
     ServerResponse<String> deleteRating(int ratingId);
     ServerResponse<PageInfo> getMovieRatingList(int pageNum, int pageSize, int movieId);
+    void recommendNow(Integer userId);
 
 }

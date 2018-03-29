@@ -5,6 +5,7 @@ import com.bingo.common.ResponseCode;
 import com.bingo.common.ServerResponse;
 import com.bingo.domain.User;
 import com.bingo.repository.UserRepository;
+import com.bingo.service.IRatingService;
 import com.bingo.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class UserController {
     private IUserService iUserService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private IRatingService iRatingService;
 
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
     @ResponseBody
@@ -43,17 +46,8 @@ public class UserController {
     @ResponseBody
     public ServerResponse<String> logout(HttpSession session){
         int id =((User)session.getAttribute(Const.CURRENT_USER)).getId();
-//        userRepository.changeRecommend(id);
-        Process proc = null;
-        try {
-            proc = Runtime.getRuntime().exec("python " + Const.PY_URL+"\\src\\main\\resources\\testItem.py "+id);
-            proc.waitFor();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        userRepository.changeRecommend(id);
+        iRatingService.recommendNow(id);
         session.removeAttribute(Const.CURRENT_USER);
 
         return ServerResponse.createBySuccess();
@@ -153,4 +147,16 @@ public class UserController {
         }
         return iUserService.getRecommend2(currentUser.getId());
     }
+
+    @RequestMapping(value = "recommendNow.do", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<String> recommendNow(HttpSession session){
+        User currentUser = (User)session.getAttribute(Const.CURRENT_USER);
+        if(currentUser == null){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"未登录，需要强制登录status=10");
+        }
+        iRatingService.recommendNow(currentUser.getId());
+        return ServerResponse.createBySuccess("推荐完成");
+    }
+
 }
